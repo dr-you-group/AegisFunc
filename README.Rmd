@@ -75,7 +75,7 @@ table <- get_cohort_list_table(input)
 input <- base::list()
 input$conn_info <- conn_info
 input$query$cdm_database_schema <- "[CDM_DB_SCHEMA]"
-input$query$reuslt_database_schema <- "[RESULT_DB_SCHEMA]"
+input$query$result_database_schema <- "[RESULT_DB_SCHEMA]"
 input$query$target_cohort_definition_id <- ""
 input$query$outcome_cohort_definition_id <- ""
 input$query$cohort_start_date <- ""
@@ -158,7 +158,7 @@ map_map
 input <- base::list()
 input$conn_info <- conn_info
 input$query$cdm_database_schema <- "[CDM_DB_SCHEMA]"
-input$query$reuslt_database_schema <- "[RESULT_DB_SCHEMA]"
+input$query$result_database_schema <- "[RESULT_DB_SCHEMA]"
 input$query$target_cohort_definition_id <- ""
 input$query$outcome_cohort_definition_id <- ""
 input$query$cohort_start_date <- ""
