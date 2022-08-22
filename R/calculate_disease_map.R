@@ -1,7 +1,14 @@
 calculate_disease_map <- function(input,
                                   ...) {
   table <- input$table
-  graph_file_path <- input$graph_file_path
+  path <- base::getwd()
+  country <- input$gadm$country
+  level <- input$gadm$level
+  graph_file_path <- base::file.path(path, base::paste0("gadm", "_", country, "_", level, ".graph"))
+
+  gadm <- read_gadm_data(input)
+  nb <- spdep::poly2nb(gadm)
+  spdep::nb2INLA(graph_file_path, nb)
 
   formula <- outcome_count ~ 1 +
     # INLA::f(OBJECTID, model = "iid") +
