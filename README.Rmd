@@ -69,7 +69,7 @@ table <- get_cohort_list_table(input)
 
 ## Disease Map
 
-### Step 01. Table of Cohort
+### Step 01. Get cohort table
 
 ```r
 input <- base::list()
@@ -82,7 +82,7 @@ input$query$cohort_start_date <- "2020-01-01"
 input$query$cohort_end_date <- "2020-12-31"
 input$query$time_at_risk_start_date <- "0"
 input$query$time_at_risk_end_date <- "0"
-input$query$time_at_risk_end_date_panel <- "cohort_end_date" # "cohort_start_date" or "cohort_end_date"
+input$query$time_at_risk_end_date_panel <- "cohort_start_date" # "cohort_start_date" or "cohort_end_date"
 
 map_table <- get_disease_map_table(input)
 ```
@@ -101,33 +101,9 @@ map_table_adjust <- calculate_adjust_age_sex_indirectly(input)
 ```
 
 
-### Step 03. Calculate disease map
+### Step 03-1. Merge Table with GIS (GADM)
 
-```r
-input <- base::list()
-input$table <- map_table_adjust
-input$gadm$country <- "KOR"
-input$gadm$level <- 2
-
-map_derivatives <- calculate_disease_map(input)
-```
-
-
-### Step 04. Merge GADM with derivatives
-
-This function is not implemented yet.
-
-```r
-input <- base::list()
-table <- map_derivatives$arranged_table
-stats <- map_derivatives$stats
-
-gadm_with_map <- base::list()
-# gadm_with_map$data <- gadm + table
-# gadm_with_map$stats <- stats
-```
-
-You can use GADM data in the next step.
+Read GADM
 
 ```r
 input <- base::list()
@@ -137,11 +113,58 @@ input$gadm$level <- 2
 gadm <- read_gadm_data(input)
 ```
 
+This function is not implemented yet.
+
+```r
+# map_table_adjust_gadm <- table + gadm
+```
+
+You can use GADM data in the plot step.
+
+
+
+### Step 03-2. Merge Table with GIS (OpenStreetMap)
+
+Read OSM
+
+```r
+# input <- base::list()
+# input$osm$country <- "KOR"
+# input$osm$level <- 2
+
+osm <- read_osm_data(input)
+```
+
+This function is not implemented yet.
+
+```r
+# map_table_adjust_osm <- table + osm
+```
+
+You can use GADM data in the plot step.
+
+
+
+### Step 04. Calculate disease map
+
+```r
+input <- base::list()
+input$table <- map_table_adjust # map_table_adjust_gadm or map_table_adjust_osm
+input$gadm$country <- "KOR"
+input$gadm$level <- 2
+
+map_derivatives <- calculate_disease_map(input)
+```
+
+
 
 ### Step 05. Plot
 
 ```r
-# input <- gadm_with_map
+# input <- base::list()
+# table <- map_derivatives$arranged_table
+# stats <- map_derivatives$stats
+# input <- map_derivatives
 input <- base::list()
 input$data <- gadm
 input$data$name <- gadm$NAME_1
@@ -154,7 +177,7 @@ map_map
 
 ## Disease Cluster
 
-### Step 01. Table of Cohort
+### Step 01. Get cohort table
 
 ```r
 input <- base::list()
@@ -167,7 +190,7 @@ input$query$cohort_start_date <- "2020-01-01"
 input$query$cohort_end_date <- "2020-12-31"
 input$query$time_at_risk_start_date <- "0"
 input$query$time_at_risk_end_date <- "0"
-input$query$time_at_risk_end_date_panel <- "cohort_end_date" # "cohort_start_date" or "cohort_end_date"
+input$query$time_at_risk_end_date_panel <- "cohort_start_date" # "cohort_start_date" or "cohort_end_date"
 
 cluster_table <- get_disease_cluster_table(input)
 ```
@@ -186,31 +209,9 @@ cluster_table_adjust <- calculate_adjust_age_sex_indirectly(input)
 ```
 
 
-### Step 03. Calculate disease cluster
+### Step 03-1. Merge Table with GIS (GADM)
 
-```r
-input <- base::list()
-input$table <- cluster_table_adjust
-
-cluster_derivatives <- calculate_disease_cluster(input)
-```
-
-
-### Step 04. Merge GADM with derivatives
-
-This function is not implemented yet.
-
-```r
-input <- base::list()
-table <- cluster_derivatives$arranged_table
-stats <- cluster_derivatives$stats
-
-gadm_with_cluster <- base::list()
-# gadm_with_cluster$data <- gadm + table
-# gadm_with_cluster$stats <- stats
-```
-
-You can use GADM data in the next step.
+Read GADM
 
 ```r
 input <- base::list()
@@ -220,11 +221,56 @@ input$gadm$level <- 2
 gadm <- read_gadm_data(input)
 ```
 
+This function is not implemented yet.
+
+```r
+# cluster_table_adjust_gadm <- table + gadm
+```
+
+You can use GADM data in the plot step.
+
+
+
+### Step 03-2. Merge Table with GIS (OpenStreetMap)
+
+Read OSM
+
+```r
+# input <- base::list()
+# input$osm$country <- "KOR"
+# input$osm$level <- 2
+
+osm <- read_osm_data(input)
+```
+
+This function is not implemented yet.
+
+```r
+# cluster_table_adjust_osm <- table + osm
+```
+
+You can use GADM data in the plot step.
+
+
+
+### Step 04. Calculate disease map
+
+```r
+input <- base::list()
+input$table <- cluster_table_adjust # cluster_table_adjust_gadm or cluster_table_adjust_osm
+
+cluster_derivatives <- calculate_disease_cluster(input)
+```
+
+
 
 ### Step 05. Plot
 
 ```r
-# input <- gadm_with_cluster
+# input <- base::list()
+# table <- cluster_derivatives$arranged_table
+# stats <- cluster_derivatives$stats
+# input <- cluster_derivatives
 input <- base::list()
 input$data <- gadm
 input$data$name <- gadm$NAME_1
