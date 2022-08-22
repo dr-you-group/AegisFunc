@@ -1,26 +1,10 @@
--- IF OBJECT_ID('tempdb..#TARGET_COHORT') IS NOT NULL
---   DROP TABLE #TARGET_COHORT
--- IF OBJECT_ID('tempdb..#OUTCOME_COHORT') IS NOT NULL
---   DROP TABLE #OUTCOME_COHORT
--- IF OBJECT_ID('tempdb..#INCLUDING_COHORT') IS NOT NULL
---   DROP TABLE #INCLUDING_COHORT
--- IF OBJECT_ID('tempdb..#INCLUDING_COHORT_W_PERSON') IS NOT NULL
---   DROP TABLE #INCLUDING_COHORT_W_PERSON
--- IF OBJECT_ID('tempdb..#INCLUDING_COHORT_W_PERSON_W_LOCATION') IS NOT NULL
---   DROP TABLE #INCLUDING_COHORT_W_PERSON_W_LOCATION
--- IF OBJECT_ID('tempdb..#ALL_IN_TARGET_COHORT') IS NOT NULL
---   DROP TABLE #ALL_IN_TARGET_COHORT
--- IF OBJECT_ID('tempdb..#ALL_IN_TARGET_COHORT_W_PERSON') IS NOT NULL
---   DROP TABLE #ALL_IN_TARGET_COHORT_W_PERSON
-
-
-
+WITH 
+target_cohort AS (
 SELECT DISTINCT
   cohort_definition_id,
   subject_id,
   cohort_start_date,
   cohort_end_date
-INTO #target_cohort
 FROM @result_database_schema.cohort
 WHERE
   cohort_definition_id = @target_cohort_definition_id
@@ -28,25 +12,25 @@ AND
   '@cohort_start_date' <= cohort_start_date
 AND
   '@cohort_end_date' >= cohort_end_date
-
+),
+outcome_cohort AS (
 SELECT DISTINCT
   cohort_definition_id,
   subject_id,
   cohort_start_date,
   cohort_end_date
-INTO #outcome_cohort
 FROM @result_database_schema.cohort
 WHERE
   cohort_definition_id = @outcome_cohort_definition_id
-
+),
+including_cohort AS (
 SELECT DISTINCT
   o.cohort_definition_id,
   o.subject_id,
   o.cohort_start_date,
   o.cohort_end_date
-INTO #including_cohort
-FROM #outcome_cohort o
-LEFT JOIN #target_cohort t
+FROM outcome_cohort o
+LEFT JOIN target_cohort t
 ON
   t.subject_id = o.subject_id
 WHERE
@@ -57,7 +41,8 @@ AND
   DATEADD(day, '@time_at_risk_start_date', t.cohort_start_date) <= o.cohort_start_date
 AND
   DATEADD(day, '@time_at_risk_end_date', t.@time_at_risk_end_date_panel) <= o.cohort_end_date
-
+),
+including_cohort_w_person AS (
 SELECT
   c.cohort_definition_id,
   c.subject_id,
@@ -74,17 +59,17 @@ SELECT
     WHEN YEAR(c.cohort_start_date) - p.year_of_birth > 19 THEN 2
     WHEN YEAR(c.cohort_start_date) - p.year_of_birth >= 10 THEN 1
     WHEN YEAR(c.cohort_start_date) - p.year_of_birth <= 9 THEN 0
-  END AS age_category
+  END AS age_category,
   CASE
     WHEN p.gender_concept_id = '8507' THEN 0
-    WHEN p.gender_concept_id = '8532' TEHN 1
+    WHEN p.gender_concept_id = '8532' THEN 1
   END AS sex_category
-INTO #including_cohort_w_person
-FROM #including_cohort c
+FROM including_cohort c
 INNER JOIN @cdm_database_schema.person p
 ON
   c.subject_id = p.person_id
-
+),
+including_cohort_w_person_w_location AS (
 SELECT DISTINCT
   c.subject_id,
   l.location_id,
@@ -92,25 +77,24 @@ SELECT DISTINCT
   l.longitude,
   c.age_category,
   c.sex_category
-INTO #including_cohort_w_person_w_location
-FROM #including_cohort_w_person c
+FROM including_cohort_w_person c
 INNER JOIN @cdm_database_schema.location l
 ON
   c.location_id = l.location_id
 ORDER BY 
   c.location_id
-
-
+),
+all_in_target_cohort AS (
 SELECT DISTINCT
   cohort_definition_id,
   subject_id,
   cohort_start_date,
   cohort_end_date
-INTO #all_in_target_cohort
 FROM @result_database_schema.cohort
 WHERE
   cohort_definition_id = @target_cohort_definition_id
-
+),
+all_in_target_cohort_w_person AS (
 SELECT
   c.cohort_definition_id,
   c.subject_id,
@@ -127,17 +111,16 @@ SELECT
     WHEN YEAR(c.cohort_start_date) - p.year_of_birth > 19 THEN 2
     WHEN YEAR(c.cohort_start_date) - p.year_of_birth >= 10 THEN 1
     WHEN YEAR(c.cohort_start_date) - p.year_of_birth <= 9 THEN 0
-  END AS age_category
+  END AS age_category,
   CASE
     WHEN p.gender_concept_id = '8507' THEN 0
-    WHEN p.gender_concept_id = '8532' TEHN 1
+    WHEN p.gender_concept_id = '8532' THEN 1
   END AS sex_category
-INTO #all_in_target_cohort_w_person
-FROM #all_in_target_cohort c
+FROM all_in_target_cohort c
 LEFT JOIN @cdm_database_schema.person p
 ON
   c.subject_id = p.person_id
-
+)
 
 SELECT
   t.location_id,
@@ -156,9 +139,9 @@ FROM
     c.age_category,
     c.sex_category,
     COUNT(c.subject_id) AS target_count
-  FROM #all_in_target_cohort_w_person c
+  FROM all_in_target_cohort_w_person c
   INNER JOIN @cdm_database_schema.location l
-  WHERE
+  ON
     c.cohort_definition_id = @target_cohort_definition_id
   AND
     '@cohort_start_date' <= c.cohort_start_date
@@ -175,7 +158,7 @@ LEFT JOIN
     age_category,
     sex_category,
     COUNT(subject_id) AS outcome_count
-  FROM #including_cohort_w_person_w_location
+  FROM including_cohort_w_person_w_location
   GROUP BY location_id, latitude, longitude, age_category, sex_category
 ) o
 ON
@@ -189,13 +172,4 @@ AND
 AND
   t.sex_category = o.sex_category
 ORDER BY t.location_id, t.age_category, t.sex_category
-
-
-
-DROP TABLE #target_cohort
-DROP TABLE #outcome_cohort
-DROP TABLE #including_cohort
-DROP TABLE #including_cohort_w_person
-DROP TABLE #including_cohort_w_person_w_location
-DROP TABLE #all_in_target_cohort
-DROP TABLE #all_in_target_cohort_w_person
+;
