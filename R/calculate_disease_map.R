@@ -1,6 +1,7 @@
 calculate_disease_map <- function(input,
                                   ...) {
   table <- input$table
+
   path <- base::getwd()
   country <- input$gadm$country
   level <- input$gadm$level
