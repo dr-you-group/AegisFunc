@@ -76,13 +76,13 @@ input <- base::list()
 input$conn_info <- conn_info
 input$query$cdm_database_schema <- "[CDM_DB_SCHEMA]"
 input$query$result_database_schema <- "[RESULT_DB_SCHEMA]"
-input$query$target_cohort_definition_id <- ""
-input$query$outcome_cohort_definition_id <- ""
-input$query$cohort_start_date <- ""
-input$query$cohort_end_date <- ""
-input$query$time_at_risk_start_date <- ""
-input$query$time_at_risk_end_date <- ""
-input$query$time_at_risk_end_date_panel <- ""
+input$query$target_cohort_definition_id <- "1"
+input$query$outcome_cohort_definition_id <- "2"
+input$query$cohort_start_date <- "2020-01-01"
+input$query$cohort_end_date <- "2020-12-31"
+input$query$time_at_risk_start_date <- "0"
+input$query$time_at_risk_end_date <- "0"
+input$query$time_at_risk_end_date_panel <- "cohort_end_date" # "cohort_start_date" or "cohort_end_date"
 
 map_table <- get_disease_map_table(input)
 ```
@@ -160,13 +160,13 @@ input <- base::list()
 input$conn_info <- conn_info
 input$query$cdm_database_schema <- "[CDM_DB_SCHEMA]"
 input$query$result_database_schema <- "[RESULT_DB_SCHEMA]"
-input$query$target_cohort_definition_id <- ""
-input$query$outcome_cohort_definition_id <- ""
-input$query$cohort_start_date <- ""
-input$query$cohort_end_date <- ""
-input$query$time_at_risk_start_date <- ""
-input$query$time_at_risk_end_date <- ""
-input$query$time_at_risk_end_date_panel <- ""
+input$query$target_cohort_definition_id <- "1"
+input$query$outcome_cohort_definition_id <- "2"
+input$query$cohort_start_date <- "2020-01-01"
+input$query$cohort_end_date <- "2020-12-31"
+input$query$time_at_risk_start_date <- "0"
+input$query$time_at_risk_end_date <- "0"
+input$query$time_at_risk_end_date_panel <- "cohort_end_date" # "cohort_start_date" or "cohort_end_date"
 
 cluster_table <- get_disease_cluster_table(input)
 ```
