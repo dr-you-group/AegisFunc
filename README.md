@@ -90,6 +90,7 @@ map_table_adjust <- calculate_adjust_age_sex_indirectly(input)
 ``` r
 input <- base::list()
 input$table <- map_table_adjust
+input$map_file_path <- ""
 
 map_derivatives <- calculate_disease_map(input)
 ```
