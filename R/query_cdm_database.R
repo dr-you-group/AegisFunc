@@ -12,11 +12,13 @@ query_cdm_database <- function(sql_file_name = NULL,
 
   sql <- SqlRender::readSql(sourceFile = sql_file_path)
   sql <- SqlRender::renderSql(sql = sql, ...)$sql
-  # sql <- SqlRender::translateSql(
-  #   sql = sql,
-  #   targetDialect = target_dialect,
-  #   oracleTempSchema = oracle_temp_schema
-  # )
+  if (conn_info$dbms != "sql server") {
+    sql <- SqlRender::translateSql(
+      sql = sql,
+      targetDialect = conn_info$dbms,
+      oracleTempSchema = oracle_temp_schema
+    )
+  }
 
   conn <- DatabaseConnector::connect(conn_info)
   query <- DatabaseConnector::querySql(
