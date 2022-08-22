@@ -9,9 +9,9 @@ FROM @result_database_schema.cohort
 WHERE
   cohort_definition_id = @target_cohort_definition_id
 AND
-  '@cohort_start_date' <= cohort_start_date
+  CAST('@cohort_start_date' AS DATE) <= cohort_start_date
 AND
-  '@cohort_end_date' >= cohort_end_date
+  CAST('@cohort_start_date' AS DATE) >= cohort_end_date
 ),
 outcome_cohort AS (
 SELECT DISTINCT
@@ -38,9 +38,9 @@ WHERE
 AND
   t.cohort_end_date >= o.cohort_start_date
 AND
-  DATEADD(day, '@time_at_risk_start_date', t.cohort_start_date) <= o.cohort_start_date
+  DATEADD(day, CAST('@time_at_risk_start_date' AS INTEGER), t.cohort_start_date) <= o.cohort_start_date
 AND
-  DATEADD(day, '@time_at_risk_end_date', t.@time_at_risk_end_date_panel) <= o.cohort_end_date
+  DATEADD(day, CAST('@time_at_risk_end_date' AS INTEGER), t.@time_at_risk_end_date_panel) <= o.cohort_end_date
 ),
 including_cohort_w_person AS (
 SELECT
@@ -70,7 +70,7 @@ ON
   c.subject_id = p.person_id
 ),
 including_cohort_w_person_w_location AS (
-SELECT DISTINCT
+SELECT --DISTINCT
   c.subject_id,
   l.location_id,
   l.latitude,
@@ -144,9 +144,9 @@ FROM
   ON
     c.cohort_definition_id = @target_cohort_definition_id
   AND
-    '@cohort_start_date' <= c.cohort_start_date
+    CAST('@cohort_start_date' AS DATE) <= c.cohort_start_date
   AND
-    '@cohort_end_date' >= c.cohort_end_date
+    CAST('@cohort_end_date' AS DATE) >= c.cohort_end_date
   GROUP BY l.location_id, l.latitude, l.longitude, c.age_category, c.sex_category
 ) t
 LEFT JOIN
