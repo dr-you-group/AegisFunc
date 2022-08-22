@@ -8,7 +8,6 @@ query_cdm_database <- function(sql_file_name = NULL,
                                ...) {
   # sql_file_path <- base::system.file("extdata", base::paste0("sql/sql_server/", sql_file_name, ".sql"), package = "AegisFunc")
   sql_file_path <- base::file.path(base::getwd(), "inst", "extdata", "sql", "sql_server", base::paste0(sql_file_name, ".sql"))
-  print(sql_file_path)
 
   sql <- SqlRender::readSql(sourceFile = sql_file_path)
   sql <- SqlRender::renderSql(sql = sql, ...)$sql
@@ -17,7 +16,7 @@ query_cdm_database <- function(sql_file_name = NULL,
       sql = sql,
       targetDialect = conn_info$dbms,
       oracleTempSchema = oracle_temp_schema
-    )
+    )$sql
   }
 
   conn <- DatabaseConnector::connect(conn_info)
