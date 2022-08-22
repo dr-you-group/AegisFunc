@@ -2,7 +2,7 @@ get_cohort_analysis_table <- function(input,
                                       ...) {
   conn_info <- input$conn_info
   cdm_database_schema <- input$query$cdm_database_schema
-  reuslt_database_schema <- input$query$reuslt_database_schema
+  result_database_schema <- input$query$result_database_schema
   target_cohort_definition_id <- input$query$target_cohort_definition_id
   outcome_cohort_definition_id <- input$query$outcome_cohort_definition_id
   cohort_start_date <- input$query$cohort_start_date
@@ -17,7 +17,7 @@ get_cohort_analysis_table <- function(input,
     sql_file_name = sql_file_name,
     conn_info = conn_info,
     cdm_database_schema = cdm_database_schema,
-    reuslt_database_schema = reuslt_database_schema,
+    result_database_schema = result_database_schema,
     target_cohort_definition_id = target_cohort_definition_id,
     outcome_cohort_definition_id = outcome_cohort_definition_id,
     cohort_start_date = cohort_start_date,
