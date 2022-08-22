@@ -10,8 +10,7 @@ get_connection_details <- function(input,
   path_to_driver <- input$conn$path_to_driver
   connection_string <- input$conn$connection_string
 
-  if (base::is.null(path_to_driver) |
-    !base::length(base::list.files(base::getwd(), "^.*-jdbc-.*$"))) {
+  if (base::is.null(path_to_driver)) {
     DatabaseConnector::downloadJdbcDrivers(
       dbms = dbms,
       pathToDriver = base::getwd(),
