@@ -44,7 +44,7 @@ We have tested with PostgreSQL.
 
 ```r 
 input <- base::list()
-input$conn$dbms <- "sql server"
+input$conn$dbms <- "postgresql"
 input$conn$path_to_driver <- getwd()
 input$conn$connection_string <- "jdbc:postgresql://[SERVER_IP]:[SERVER_PORT]/[CDM_DB_NAME]"
 input$conn$user <- "****"
