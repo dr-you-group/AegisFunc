@@ -148,6 +148,7 @@ You can use GADM data in the plot step.
 ### Step 04. Calculate disease map
 
 ```r
+input <- base::list()
 input$gadm$country <- "KOR"
 input$gadm$level <- 2
 graph_file_path <- trans_gadm_to_graph(input)
