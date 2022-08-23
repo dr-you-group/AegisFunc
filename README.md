@@ -128,10 +128,13 @@ You can use GADM data in the plot step.
 ### Step 04. Calculate disease map
 
 ``` r
-input <- base::list()
-input$table <- map_table_adjust # map_table_adjust_gadm or map_table_adjust_osm
 input$gadm$country <- "KOR"
 input$gadm$level <- 2
+graph_file_path <- trans_gadm_to_graph(input)
+
+input <- base::list()
+input$table <- map_table_adjust # map_table_adjust_gadm or map_table_adjust_osm
+input$graph_file_path <- graph_file_path
 
 map_derivatives <- calculate_disease_map(input)
 ```
