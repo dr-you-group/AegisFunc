@@ -9,22 +9,22 @@ calculate_adjust_age_sex_indirectly <- function(input,
 
   # Calculation to indirect age and gender standardization rate
   table_std <- base::data.frame(table)
-  table_std <- dplyr::group_by(table_std, age_category, sex_category)
+  table_std <- dplyr::group_by(table_std, AGE_CATEGORY, SEX_CATEGORY)
   table_std <- dplyr::summarise(
     table_std,
-    target_sum = base::sum(target_count),
-    outcome_sum = base::sum(outcome_count)
+    target_sum = base::sum(TARGET_COUNT),
+    outcome_sum = base::sum(OUTCOME_COUNT)
   )
   table_std$rate <- table_std$outcome_sum / table_std$target_sum
 
-  table <- dplyr::left_join(table, table_std, by = base::c("age_category", "sex_category"))
-  table$expected <- table$target_count * table$rate
+  table <- dplyr::left_join(table, table_std, by = base::c("AGE_CATEGORY", "SEX_CATEGORY"))
+  table$expected <- table$TARGET_COUNT * table$rate
 
-  table <- dplyr::group_by(table, location_id)
+  table <- dplyr::group_by(table, LOCATION_ID)
   table <- dplyr::summarise(
     table,
-    target_count = base::sum(target_count),
-    outcome_count = base::sum(outcome_count),
+    target_count = base::sum(TARGET_COUNT),
+    outcome_count = base::sum(OUTCOME_COUNT),
     expected = base::sum(expected)
   )
 
