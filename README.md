@@ -78,9 +78,9 @@ map_table <- get_disease_map_table(input)
 ``` r
 input <- base::list()
 input$table <- map_table
-input$mode <- "std" # "std" or "crd"
-input$fraction <- 100000
-input$conf_level <- 0.95
+input$adj$mode <- "std" # "std" or "crd"
+input$adj$fraction <- 100000
+input$adj$conf_level <- 0.95
 
 map_table_adjust <- calculate_adjust_age_sex_indirectly(input)
 ```
@@ -181,9 +181,9 @@ cluster_table <- get_disease_cluster_table(input)
 ``` r
 input <- base::list()
 input$table <- cluster_table
-input$mode <- "std" # "std" or "crd"
-input$fraction <- 100000
-input$conf_level <- 0.95
+input$adj$mode <- "std" # "std" or "crd"
+input$adj$fraction <- 100000
+input$adj$conf_level <- 0.95
 
 cluster_table_adjust <- calculate_adjust_age_sex_indirectly(input)
 ```

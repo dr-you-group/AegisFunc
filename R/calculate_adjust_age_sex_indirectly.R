@@ -1,9 +1,9 @@
 calculate_adjust_age_sex_indirectly <- function(input,
                                                 ...) {
   table <- input$table
-  mode <- input$mode
-  fraction <- input$fraction
-  conf_level <- input$conf_level
+  mode <- input$adj$mode
+  fraction <- input$adj$fraction
+  conf_level <- input$adj$conf_level
 
   zv <- stats::qnorm(0.5 * (1 + conf_level))
 
