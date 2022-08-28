@@ -14,6 +14,8 @@ read_gadm_data <- function(input,
     level = level
   )
 
+  gadm$oid <- base::seq(1:length(gadm))
+
   gadm
 }
 

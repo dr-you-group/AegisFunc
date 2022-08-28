@@ -6,8 +6,8 @@ calculate_disease_map <- function(input,
   formula <- outcome_count ~ 1 +
     # INLA::f(OBJECTID, model = "iid") +
     # INLA::f(id2, model = "bym2", graph = file.path(MAP.path, MAP.file), adjust.for.con.comp = TRUE) +
-    INLA::f(location_id, model = "iid") +
-    INLA::f(location_id, model = "bym2", graph = graph_file_path, adjust.for.con.comp = TRUE)
+    INLA::f(oid, model = "iid") +
+    INLA::f(oid, model = "bym2", graph = graph_file_path, adjust.for.con.comp = TRUE)
   family <- "poisson"
   control_predictor <- base::list(compute = TRUE)
 
