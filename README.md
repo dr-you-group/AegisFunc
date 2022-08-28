@@ -185,7 +185,7 @@ This function is not implemented yet.
 
 You can use Geo data in the plot step.
 
-### Step 04. Calculate disease map
+### Step 04. Calculate disease cluster
 
 ``` r
 input <- base::list()
