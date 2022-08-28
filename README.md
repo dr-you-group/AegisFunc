@@ -82,7 +82,7 @@ input$adj$mode <- "std" # "std" or "crd"
 input$adj$fraction <- 100000
 input$adj$conf_level <- 0.95
 
-map_table_adjust <- calculate_adjust_age_sex_indirectly(input)
+map_table_adj <- calculate_adjust_age_sex_indirectly(input)
 ```
 
 ### Step 03. Merge Table with Geo data
@@ -100,7 +100,7 @@ geo <- read_geo_data(input)
 This function is not implemented yet.
 
 ``` r
-# map_table_adjust_geo <- table + geo
+# map_table_adj_geo <- table + geo
 ```
 
 You can use Geo data in the plot step.
@@ -114,10 +114,10 @@ input$geo$level <- 2
 graph_file_path <- trans_geo_to_graph(input)
 
 input <- base::list()
-input$table <- map_table_adjust # map_table_adjust_geo
+input$table <- map_table_adj # map_table_adj_geo
 input$graph_file_path <- graph_file_path
 
-map_derivatives <- calculate_disease_map(input)
+map_deriv <- calculate_disease_map(input)
 ```
 
 ### Step 05. Plot
@@ -125,8 +125,8 @@ map_derivatives <- calculate_disease_map(input)
 ``` r
 input <- base::list()
 input$data <- geo
-# input$data$indicator <- map_derivatives$arranged_table$indicator
-# input$stats <- map_derivatives$stats
+# input$data$indicator <- map_deriv$arranged_table$indicator
+# input$stats <- map_deriv$stats
 input$data$indicator <- stats::rnorm(n = length(geo), 150, 30)
 
 map_map <- get_disease_map_map(input)
@@ -162,7 +162,7 @@ input$adj$mode <- "std" # "std" or "crd"
 input$adj$fraction <- 100000
 input$adj$conf_level <- 0.95
 
-cluster_table_adjust <- calculate_adjust_age_sex_indirectly(input)
+cluster_table_adj <- calculate_adjust_age_sex_indirectly(input)
 ```
 
 ### Step 03. Merge Table with Geo data
@@ -180,7 +180,7 @@ geo <- read_geo_data(input)
 This function is not implemented yet.
 
 ``` r
-# cluster_table_adjust_geo <- table + geo
+# cluster_table_adj_geo <- table + geo
 ```
 
 You can use Geo data in the plot step.
@@ -189,9 +189,9 @@ You can use Geo data in the plot step.
 
 ``` r
 input <- base::list()
-input$table <- cluster_table_adjust # cluster_table_adjust_geo
+input$table <- cluster_table_adj # cluster_table_adj_geo
 
-cluster_derivatives <- calculate_disease_cluster(input)
+cluster_deriv <- calculate_disease_cluster(input)
 ```
 
 ### Step 05. Plot
@@ -199,8 +199,8 @@ cluster_derivatives <- calculate_disease_cluster(input)
 ``` r
 input <- base::list()
 input$data <- geo
-# input$data$indicator <- cluster_derivatives$arranged_table$indicator
-# input$stats <- cluster_derivatives$stats
+# input$data$indicator <- cluster_deriv$arranged_table$indicator
+# input$stats <- cluster_deriv$stats
 input$data$indicator <- stats::rnorm(n = length(geo), 150, 30)
 
 cluster_map <- get_disease_cluster_map(input)
