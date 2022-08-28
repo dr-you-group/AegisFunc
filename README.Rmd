@@ -40,6 +40,9 @@ devtools::load_all()
 
 ### Database connection
 
+- Connection string of SQL Server: "jdbc:sqlserver://localhost:1433;databaseName=cdm;user=user;password=password"
+- Connection string of PostgreSQL: "jdbc:postgresql://localhost:5432/cdm?user=user&password=password"
+
 We have tested with PostgreSQL.
 
 ```r 
