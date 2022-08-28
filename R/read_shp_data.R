@@ -10,6 +10,15 @@ read_shp_data <- function(input,
 
   shp <- raster::shapefile(shp_file_path, encoding = "EUC-KR")
 
+  pattern <- "KOR_NM"
+  name_idx <- grep(pattern, names(shp))
+
+  if (length(name_idx) > 1) {
+    shp$name <- apply(shp@data[, name_idx], 1, paste, collapse = " ")
+  } else {
+    shp$name <- shp@data[, name_idx]
+  }
+
   shp
 }
 

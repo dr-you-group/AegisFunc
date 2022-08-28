@@ -10,7 +10,6 @@ read_gadm_data <- function(input,
 
   if (country == "KOR") {
     gadm <- read_shp_data(input)
-
   } else {
     gadm <- raster::getData(
       name = name,
@@ -24,6 +23,13 @@ read_gadm_data <- function(input,
   }
 
   gadm$oid <- base::seq(1:length(gadm))
+
+  pattern <- "^NAME([^0][1-9])"
+  name_idx <- grep(pattern, names(gadm))
+
+  if (!length(grep("name", names(gadm))) > 0 & length(name_idx) > 0) {
+    gadm$name <- apply(gadm@data[, name_idx], 1, paste, collapse = " ")
+  }
 
   gadm
 }
