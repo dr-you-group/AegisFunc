@@ -9,7 +9,7 @@ read_geo_data <- function(input,
   type <- "sp"
 
   if (country == "KOR") {
-    geo <- read_shp_data(input)
+    geo <- read_kor_shp(input)
   } else {
     geo <- raster::getData(
       name = name,
