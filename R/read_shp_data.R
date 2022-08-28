@@ -13,10 +13,10 @@ read_shp_data <- function(input,
   shp <- convert_crs(shp)
 
   pattern <- "KOR_NM"
-  name_idx <- grep(pattern, names(shp))
+  name_idx <- base::grep(pattern, names(shp))
 
-  if (length(name_idx) > 1) {
-    shp$name <- apply(shp@data[, name_idx], 1, paste, collapse = " ")
+  if (base::length(name_idx) > 1) {
+    shp$name <- base::apply(shp@data[, name_idx], 1, base::paste, collapse = " ")
   } else {
     shp$name <- shp@data[, name_idx]
   }

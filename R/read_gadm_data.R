@@ -25,10 +25,10 @@ read_gadm_data <- function(input,
   gadm$oid <- base::seq(1:length(gadm))
 
   pattern <- "^NAME([^0][1-9])"
-  name_idx <- grep(pattern, names(gadm))
+  name_idx <- base::grep(pattern, base::names(gadm))
 
-  if (!length(grep("name", names(gadm))) > 0 & length(name_idx) > 0) {
-    gadm$name <- apply(gadm@data[, name_idx], 1, paste, collapse = " ")
+  if (!base::length(base::grep("name", base::names(gadm))) > 0 & base::length(name_idx) > 0) {
+    gadm$name <- base::apply(gadm@data[, name_idx], 1, base::paste, collapse = " ")
   }
 
   gadm
