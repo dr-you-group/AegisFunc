@@ -143,12 +143,10 @@ map_derivatives <- calculate_disease_map(input)
 ### Step 05. Plot
 
 ``` r
-# input <- base::list()
-# table <- map_derivatives$arranged_table
-# stats <- map_derivatives$stats
-# input <- map_derivatives
 input <- base::list()
 input$data <- gadm
+# input$data$indicator <- map_derivatives$arranged_table$indicator
+# input$stats <- map_derivatives$stats
 input$data$indicator <- stats::rnorm(n = nrow(gadm), 150, 30)
 
 map_map <- get_disease_map_map(input)
@@ -239,12 +237,10 @@ cluster_derivatives <- calculate_disease_cluster(input)
 ### Step 05. Plot
 
 ``` r
-# input <- base::list()
-# table <- cluster_derivatives$arranged_table
-# stats <- cluster_derivatives$stats
-# input <- cluster_derivatives
 input <- base::list()
 input$data <- gadm
+# input$data$indicator <- cluster_derivatives$arranged_table$indicator
+# input$stats <- cluster_derivatives$stats
 input$data$indicator <- stats::rnorm(n = nrow(gadm), 150, 30)
 
 cluster_map <- get_disease_cluster_map(input)
