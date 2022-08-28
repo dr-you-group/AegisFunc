@@ -85,56 +85,36 @@ input$adj$conf_level <- 0.95
 map_table_adjust <- calculate_adjust_age_sex_indirectly(input)
 ```
 
-### Step 03-1. Merge Table with GIS (GADM)
+### Step 03. Merge Table with Geo data
 
-Read GADM
+Read Geo data
 
 ``` r
 input <- base::list()
-input$gadm$country <- "KOR"
-input$gadm$level <- 2
+input$geo$country <- "KOR"
+input$geo$level <- 2
 
-gadm <- read_gadm_data(input)
+geo <- read_geo_data(input)
 ```
 
 This function is not implemented yet.
 
 ``` r
-# map_table_adjust_gadm <- table + gadm
+# map_table_adjust_geo <- table + geo
 ```
 
-You can use GADM data in the plot step.
-
-### Step 03-2. Merge Table with GIS (OpenStreetMap)
-
-Read OSM
-
-``` r
-# input <- base::list()
-# input$osm$country <- "KOR"
-# input$osm$level <- 2
-
-osm <- read_osm_data(input)
-```
-
-This function is not implemented yet.
-
-``` r
-# map_table_adjust_osm <- table + osm
-```
-
-You can use GADM data in the plot step.
+You can use Geo data in the plot step.
 
 ### Step 04. Calculate disease map
 
 ``` r
 input <- base::list()
-input$gadm$country <- "KOR"
-input$gadm$level <- 2
-graph_file_path <- trans_gadm_to_graph(input)
+input$geo$country <- "KOR"
+input$geo$level <- 2
+graph_file_path <- trans_geo_to_graph(input)
 
 input <- base::list()
-input$table <- map_table_adjust # map_table_adjust_gadm or map_table_adjust_osm
+input$table <- map_table_adjust # map_table_adjust_geo
 input$graph_file_path <- graph_file_path
 
 map_derivatives <- calculate_disease_map(input)
@@ -144,10 +124,10 @@ map_derivatives <- calculate_disease_map(input)
 
 ``` r
 input <- base::list()
-input$data <- gadm
+input$data <- geo
 # input$data$indicator <- map_derivatives$arranged_table$indicator
 # input$stats <- map_derivatives$stats
-input$data$indicator <- stats::rnorm(n = nrow(gadm), 150, 30)
+input$data$indicator <- stats::rnorm(n = length(geo), 150, 30)
 
 map_map <- get_disease_map_map(input)
 map_map
@@ -185,51 +165,31 @@ input$adj$conf_level <- 0.95
 cluster_table_adjust <- calculate_adjust_age_sex_indirectly(input)
 ```
 
-### Step 03-1. Merge Table with GIS (GADM)
+### Step 03. Merge Table with Geo data
 
-Read GADM
+Read Geo data
 
 ``` r
 input <- base::list()
-input$gadm$country <- "KOR"
-input$gadm$level <- 2
+input$geo$country <- "KOR"
+input$geo$level <- 2
 
-gadm <- read_gadm_data(input)
+geo <- read_geo_data(input)
 ```
 
 This function is not implemented yet.
 
 ``` r
-# cluster_table_adjust_gadm <- table + gadm
+# cluster_table_adjust_geo <- table + geo
 ```
 
-You can use GADM data in the plot step.
-
-### Step 03-2. Merge Table with GIS (OpenStreetMap)
-
-Read OSM
-
-``` r
-# input <- base::list()
-# input$osm$country <- "KOR"
-# input$osm$level <- 2
-
-osm <- read_osm_data(input)
-```
-
-This function is not implemented yet.
-
-``` r
-# cluster_table_adjust_osm <- table + osm
-```
-
-You can use GADM data in the plot step.
+You can use Geo data in the plot step.
 
 ### Step 04. Calculate disease map
 
 ``` r
 input <- base::list()
-input$table <- cluster_table_adjust # cluster_table_adjust_gadm or cluster_table_adjust_osm
+input$table <- cluster_table_adjust # cluster_table_adjust_geo
 
 cluster_derivatives <- calculate_disease_cluster(input)
 ```
@@ -238,10 +198,10 @@ cluster_derivatives <- calculate_disease_cluster(input)
 
 ``` r
 input <- base::list()
-input$data <- gadm
+input$data <- geo
 # input$data$indicator <- cluster_derivatives$arranged_table$indicator
 # input$stats <- cluster_derivatives$stats
-input$data$indicator <- stats::rnorm(n = nrow(gadm), 150, 30)
+input$data$indicator <- stats::rnorm(n = length(geo), 150, 30)
 
 cluster_map <- get_disease_cluster_map(input)
 cluster_map
