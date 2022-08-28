@@ -6,8 +6,8 @@ make_leaflet_color <- function(input,
 
   color <- leaflet::colorQuantile(
     palette = palette,
-    domain = NULL,
-    n = 5
+    domain = domain,
+    n = n
   )
 
   color

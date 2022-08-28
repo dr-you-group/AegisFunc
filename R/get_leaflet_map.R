@@ -5,7 +5,7 @@ get_leaflet_map <- function(input,
   color <- base::list()
   color$palette <- "Greens"
   color$domain <- NULL
-  color$n <- 10
+  color$n <- base::length(data)
 
 
   color <- make_leaflet_color(color)
