@@ -5,6 +5,8 @@ read_gadm_data <- function(input,
   path <- base::getwd()
   country <- input$gadm$country
   level <- input$gadm$level
+  version <- 3.6
+  type <- "sp"
 
   if (country == "KOR") {
     gadm <- read_shp_data(input)
@@ -15,7 +17,9 @@ read_gadm_data <- function(input,
       download = download,
       path = path,
       country = country,
-      level = level
+      level = level,
+      version = version,
+      type = type
     )
   }
 
