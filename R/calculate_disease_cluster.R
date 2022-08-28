@@ -23,7 +23,7 @@ calculate_disease_cluster <- function(input,
 
   stats <- base::rbind(
     base::as.data.frame(results$most.likely.cluster),
-    base::as.data.frame(results$secondary.clusters),
+    base::as.data.frame(results$secondary.clusters)
   )
   names(stats) <- c("idx", "population", "number_of_cases", "expected_cases", "smr", "log_likelihood_ratio", "monte_carlo_rank", "p_value")
 
