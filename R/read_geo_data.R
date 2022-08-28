@@ -24,7 +24,12 @@ read_geo_data <- function(input,
 
   geo$oid <- base::seq(1:length(geo))
 
-  pattern <- "^NAME_([1-9])"
+  if (country == "KOR") {
+    pattern <- "KOR_NM"
+  } else {
+    pattern <- "^NAME_([1-9])"
+  }
+
   name_idx <- base::grep(pattern, base::names(geo))
 
   if (!base::length(base::grep("name", base::names(geo))) > 0 & base::length(name_idx) > 0) {

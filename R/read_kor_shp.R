@@ -14,16 +14,6 @@ read_kor_shp <- function(input,
 
   geo <- sp::spTransform(geo, to_crs)
 
-
-  pattern <- "KOR_NM"
-  name_idx <- base::grep(pattern, names(geo))
-
-  if (base::length(name_idx) > 1) {
-    geo$name <- base::apply(geo@data[, name_idx], 1, base::paste, collapse = " ")
-  } else {
-    geo$name <- geo@data[, name_idx]
-  }
-
   geo
 }
 
