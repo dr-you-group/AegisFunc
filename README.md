@@ -94,6 +94,8 @@ map_table_adj <- calculate_adjust_age_sex_indirectly(input)
 
 Read Geo data
 
+-   Default geo data source is [GADM
+    3.6](https://gadm.org/download_country36.html)
 -   Administrative area data of South Korea is from [GIS
     DEVELOPER](http://www.gisdeveloper.co.kr/?p=2332)
 
@@ -177,6 +179,8 @@ cluster_table_adj <- calculate_adjust_age_sex_indirectly(input)
 
 Read Geo data
 
+-   Default geo data source is [GADM
+    3.6](https://gadm.org/download_country36.html)
 -   Administrative area data of South Korea is from [GIS
     DEVELOPER](http://www.gisdeveloper.co.kr/?p=2332)
 
