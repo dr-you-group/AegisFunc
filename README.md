@@ -89,6 +89,9 @@ map_table_adj <- calculate_adjust_age_sex_indirectly(input)
 
 Read Geo data
 
+-   Administrative area data of South Korea is from [GIS
+    DEVELOPER](http://www.gisdeveloper.co.kr/?p=2332)
+
 ``` r
 input <- base::list()
 input$geo$country <- "KOR"
@@ -168,6 +171,9 @@ cluster_table_adj <- calculate_adjust_age_sex_indirectly(input)
 ### Step 03. Merge Table with Geo data
 
 Read Geo data
+
+-   Administrative area data of South Korea is from [GIS
+    DEVELOPER](http://www.gisdeveloper.co.kr/?p=2332)
 
 ``` r
 input <- base::list()
