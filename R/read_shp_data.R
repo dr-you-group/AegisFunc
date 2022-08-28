@@ -10,6 +10,8 @@ read_shp_data <- function(input,
 
   shp <- raster::shapefile(shp_file_path, encoding = "EUC-KR")
 
+  shp <- convert_crs(shp)
+
   pattern <- "KOR_NM"
   name_idx <- grep(pattern, names(shp))
 
@@ -24,3 +26,11 @@ read_shp_data <- function(input,
 
 # read_shp_data(input)
 # shp <- read_shp_data(input)
+
+convert_crs <- function(shp){
+  to_crs <- sp::CRS("+proj=longlat +datum=WGS84")
+
+  shp <- sp::spTransform(shp, to_crs)
+
+  shp
+}
