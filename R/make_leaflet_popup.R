@@ -1,6 +1,6 @@
 make_leaflet_popup <- function(input,
                                ...) {
-  name <- input$data$name
+  name <- input$data$oname
   indicator <- input$data$indicator
   stats <- input$stats
 

@@ -7,6 +7,7 @@ get_geo_data <- function(input,
   switch(name,
     "OSM" = {
       geo <- read_osm_data(input)
+      pattern <- "^name$"
     },
     "GADM" = {
       geo <- read_gadm_data(input)
@@ -20,16 +21,16 @@ get_geo_data <- function(input,
     }
   )
 
+  geo$otype <- name
   geo$oid <- base::seq(1:length(geo))
 
   name_idx <- base::grep(pattern, base::names(geo))
+  name_len <- base::length(name_idx)
 
-  if (!base::length(base::grep("name", base::names(geo))) > 0 & base::length(name_idx) > 0) {
-    if (base::length(name_idx) > 1) {
-      geo$name <- base::apply(geo@data[, name_idx], 1, base::paste, collapse = " ")
-    } else {
-      geo$name <- geo@data[, name_idx]
-    }
+  if (name_len > 1) {
+    geo$oname <- base::apply(geo@data[, name_idx], 1, base::paste, collapse = " ")
+  } else if (name_len == 1){
+    geo$oname <- geo@data[, name_idx]
   }
 
   geo
