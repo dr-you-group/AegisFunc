@@ -12,7 +12,7 @@ get_geo_data <- function(input,
       geo <- read_gadm_data(input)
       pattern <- "^NAME_([1-9])"
     },
-    {
+    "KOR" = {
       if (country == "KOR") {
         geo <- read_kor_shp(input)
         pattern <- "KOR_NM"
