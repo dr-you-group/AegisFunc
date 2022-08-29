@@ -6,7 +6,13 @@ trans_geo_to_graph <- function(input,
   graph_file_path <- base::file.path(path, base::paste0("geo", "_", country, "_", level, ".graph"))
 
   geo <- read_geo_data(input)
+
+  # table(rgeos::gIsValid(geo, byid=TRUE))
+  # nb <- spdep::poly2nb(geo)
+  geo <- rgeos::gBuffer(geo, width=0, byid=TRUE)
+  # table(rgeos::gIsValid(geo, byid=TRUE))
   nb <- spdep::poly2nb(geo)
+
   spdep::nb2INLA(graph_file_path, nb)
 
   graph_file_path
