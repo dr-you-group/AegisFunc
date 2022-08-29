@@ -94,17 +94,18 @@ map_table_adj <- calculate_adjust_age_sex_indirectly(input)
 
 Read Geo data
 
--   Default geo data source is [GADM
-    3.6](https://gadm.org/download_country36.html)
--   Administrative area data of South Korea is from [GIS
-    DEVELOPER](http://www.gisdeveloper.co.kr/?p=2332)
+-   [OpenStreetMap](https://www.openstreetmap.org/)
+-   [GADM 3.6](https://gadm.org/)
+-   [Administrative area data of South
+    Korea](http://www.gisdeveloper.co.kr/?p=2332)
 
 ``` r
 input <- base::list()
+input$geo$name <- "KOR" # "OSM" or "GADM" or "KOR"
 input$geo$country <- "KOR"
 input$geo$level <- 2
 
-geo <- read_geo_data(input)
+geo <- get_geo_data(input)
 ```
 
 This function is not implemented yet.
@@ -119,6 +120,7 @@ You can use Geo data in the plot step.
 
 ``` r
 input <- base::list()
+input$geo$name <- "KOR" # "OSM" or "GADM" or "KOR"
 input$geo$country <- "KOR"
 input$geo$level <- 2
 graph_file_path <- trans_geo_to_graph(input)
@@ -179,17 +181,18 @@ cluster_table_adj <- calculate_adjust_age_sex_indirectly(input)
 
 Read Geo data
 
--   Default geo data source is [GADM
-    3.6](https://gadm.org/download_country36.html)
--   Administrative area data of South Korea is from [GIS
-    DEVELOPER](http://www.gisdeveloper.co.kr/?p=2332)
+-   [OpenStreetMap](https://www.openstreetmap.org/)
+-   [GADM 3.6](https://gadm.org/)
+-   [Administrative area data of South
+    Korea](http://www.gisdeveloper.co.kr/?p=2332)
 
 ``` r
 input <- base::list()
+input$geo$name <- "KOR" # "OSM" or "GADM" or "KOR"
 input$geo$country <- "KOR"
 input$geo$level <- 2
 
-geo <- read_geo_data(input)
+geo <- get_geo_data(input)
 ```
 
 This function is not implemented yet.
