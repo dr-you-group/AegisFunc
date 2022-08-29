@@ -4,7 +4,7 @@ make_leaflet_map <- function(input,
   color <- input$color
   popup <- input$popup
   bound <- input$bound
-  view <- input$view
+  # view <- input$view
 
   map <- leaflet::leaflet()
   map <- leaflet::addProviderTiles(map, "CartoDB.Positron")
