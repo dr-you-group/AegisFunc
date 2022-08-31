@@ -2,7 +2,7 @@ get_geo_data <- function(input,
                          ...) {
   name <- input$geo$name
   country <- input$geo$country
-  level <- input$geo$level
+  level <- base::as.numeric(input$geo$level)
 
   switch(name,
     # "OSM" = {

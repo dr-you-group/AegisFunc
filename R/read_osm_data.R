@@ -2,7 +2,7 @@ read_osm_data <- function(input,
                           ...) {
   name <- input$geo$name
   country <- input$geo$country
-  level <- input$geo$level
+  level <- base::as.numeric(input$geo$level)
 
   place <- "Korea"
   osmid = "307756"

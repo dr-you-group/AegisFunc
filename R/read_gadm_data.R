@@ -2,7 +2,7 @@ read_gadm_data <- function(input,
                            ...) {
   name <- input$geo$name
   country <- input$geo$country
-  level <- input$geo$level
+  level <- base::as.numeric(input$geo$level)
   download <- TRUE
   path <- base::getwd()
   version <- 3.6

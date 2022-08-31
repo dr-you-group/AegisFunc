@@ -4,7 +4,7 @@ get_connection_details <- function(input,
   user <- input$conn$user
   password <- input$conn$password
   server <- input$conn$server
-  port <- input$conn$port
+  port <- base::as.numeric(input$conn$port)
   extra_settings <- input$conn$extra_settings
   oracle_driver <- input$conn$oracle_driver
   path_to_driver <- input$conn$path_to_driver

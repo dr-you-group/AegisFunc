@@ -3,7 +3,7 @@ trans_geo_to_graph <- function(input,
   path <- base::getwd()
   name <- input$geo$name
   country <- input$geo$country
-  level <- input$geo$level
+  level <- base::as.numeric(input$geo$level)
   graph_file_path <- base::file.path(path, base::paste0("geo", "_", name, "_", country, "_", level, ".graph"))
 
   geo <- get_geo_data(input)

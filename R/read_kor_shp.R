@@ -1,7 +1,7 @@
 read_kor_shp <- function(input,
                          ...) {
   country <- input$geo$country
-  level <- input$geo$level
+  level <- base::as.numeric(input$geo$level)
 
   shp_file_name <- base::paste0(country, "_", level)
 
