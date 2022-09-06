@@ -78,19 +78,7 @@ input$query$time_at_risk_end_date_panel <- "cohort_start_date" # "cohort_start_d
 map_table <- get_disease_map_table(input)
 ```
 
-### Step 02. Adjust by age and sex
-
-``` r
-input <- base::list()
-input$table <- map_table
-input$adj$mode <- "std" # "std" or "crd"
-input$adj$fraction <- 100000
-input$adj$conf_level <- 0.95
-
-map_table_adj <- calculate_adjust_age_sex_indirectly(input)
-```
-
-### Step 03. Merge Table with Geo data
+### Step 02. Merge Table with Geo data
 
 Read Geo data
 
@@ -110,10 +98,28 @@ geo <- get_geo_data(input)
 Merge Map Table and Geo data
 
 ``` r
-input$latlong <- map_table_adj
+input$latlong <- map_table
 input$geo <- geo
 
 geo_map <- map_latlong_geo(input)
+```
+
+Arrange table
+
+``` r
+map_table_arr
+```
+
+### Step 03. Adjust by age and sex
+
+``` r
+input <- base::list()
+input$table <- map_table_arr
+input$adj$mode <- "std" # "std" or "crd"
+input$adj$fraction <- 100000
+input$adj$conf_level <- 0.95
+
+map_table_adj <- calculate_adjust_age_sex_indirectly(input)
 ```
 
 ### Step 04. Calculate disease map
@@ -164,19 +170,7 @@ input$query$time_at_risk_end_date_panel <- "cohort_start_date" # "cohort_start_d
 cluster_table <- get_disease_cluster_table(input)
 ```
 
-### Step 02. Adjust by age and sex
-
-``` r
-input <- base::list()
-input$table <- cluster_table
-input$adj$mode <- "std" # "std" or "crd"
-input$adj$fraction <- 100000
-input$adj$conf_level <- 0.95
-
-cluster_table_adj <- calculate_adjust_age_sex_indirectly(input)
-```
-
-### Step 03. Merge Table with Geo data
+### Step 02. Merge Table with Geo data
 
 Read Geo data
 
@@ -196,10 +190,28 @@ geo <- get_geo_data(input)
 Merge Cluster Table and Geo data
 
 ``` r
-input$latlong <- cluster_table_adj
+input$latlong <- cluster_table
 input$geo <- geo
 
 geo_map <- map_latlong_geo(input)
+```
+
+Arrange table
+
+``` r
+cluster_table_arr
+```
+
+### Step 03. Adjust by age and sex
+
+``` r
+input <- base::list()
+input$table <- cluster_table_arr
+input$adj$mode <- "std" # "std" or "crd"
+input$adj$fraction <- 100000
+input$adj$conf_level <- 0.95
+
+cluster_table_adj <- calculate_adjust_age_sex_indirectly(input)
 ```
 
 ### Step 04. Calculate disease cluster
