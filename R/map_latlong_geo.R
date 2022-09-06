@@ -9,8 +9,6 @@ map_latlong_geo <- function(input,
   geo <- sp::over(latlong, geo)
   geo$location_id <- base::seq(1:nrow(geo))
 
-  geo <- sp::merge(latlong, geo, by="location_id")
-
   geo
 }
 
