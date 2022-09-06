@@ -5,8 +5,8 @@ read_osm_data <- function(input,
   level <- base::as.numeric(input$geo$level)
 
   place <- "Korea"
-  osmid = "307756"
-  osmtype = "relation"
+  osmid <- "307756"
+  osmtype <- "relation"
 
   bbox <- osmdata::getbb(place)
   # q <- osmdata::opq_osm_id(osmid, osmtype)

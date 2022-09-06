@@ -29,7 +29,7 @@ get_geo_data <- function(input,
 
   if (name_len > 1) {
     geo$oname <- base::apply(geo@data[, name_idx], 1, base::paste, collapse = " ")
-  } else if (name_len == 1){
+  } else if (name_len == 1) {
     geo$oname <- geo@data[, name_idx]
   }
 

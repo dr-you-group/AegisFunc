@@ -1,5 +1,5 @@
 trans_geo_to_graph <- function(input,
-                                ...) {
+                               ...) {
   path <- base::getwd()
   geo <- input$geo
   # name <- input$geo$name
@@ -12,7 +12,7 @@ trans_geo_to_graph <- function(input,
 
   # table(rgeos::gIsValid(geo, byid=TRUE))
   # nb <- spdep::poly2nb(geo)
-  geo <- rgeos::gBuffer(geo, width=0, byid=TRUE)
+  geo <- rgeos::gBuffer(geo, width = 0, byid = TRUE)
   # table(rgeos::gIsValid(geo, byid=TRUE))
   nb <- spdep::poly2nb(geo)
 
