@@ -7,7 +7,9 @@ map_latlong_geo <- function(input,
   sp::proj4string(latlong) <- sp::proj4string(geo)
 
   geo <- sp::over(latlong, geo)
-  geo$oid <- base::seq(1:base::nrow(geo))
+  geo$location_id <- base::seq(1:nrow(geo))
+
+  geo <- sp::merge(latlong, geo, by="location_id")
 
   geo
 }

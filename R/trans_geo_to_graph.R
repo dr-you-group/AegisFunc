@@ -11,7 +11,7 @@ trans_geo_to_graph <- function(input,
 
   # table(rgeos::gIsValid(geo, byid=TRUE))
   # nb <- spdep::poly2nb(geo)
-  geo_m_g <- rgeos::gBuffer(geo_m, width=0, byid=TRUE)
+  geo <- rgeos::gBuffer(geo, width=0, byid=TRUE)
   # table(rgeos::gIsValid(geo, byid=TRUE))
   nb <- spdep::poly2nb(geo)
 
