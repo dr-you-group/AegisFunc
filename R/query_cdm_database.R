@@ -30,7 +30,7 @@ query_cdm_database <- function(sql_file_name = NULL,
   )
   DatabaseConnector::disconnect(conn)
 
-  colnames(query) <- tolower(colnames(query))
+  base::colnames(query) <- base::tolower(base::colnames(query))
 
   query
 }
