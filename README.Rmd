@@ -110,40 +110,38 @@ map_table_adj <- calculate_adjust_age_sex_indirectly(input)
 
 Read Geo data
 
-- [OpenStreetMap](https://www.openstreetmap.org/)
 - [GADM 3.6](https://gadm.org/)
 - [Administrative area data of South Korea](http://www.gisdeveloper.co.kr/?p=2332)
 
 ```r
 input <- base::list()
-input$geo$name <- "KOR" # "OSM" or "GADM" or "KOR"
+input$geo$name <- "KOR" # "GADM" or "KOR"
 input$geo$country <- "KOR"
 input$geo$level <- 2
 
-geo <- get_geo_data(input)
+geo <- get_geo_data(input)  country <- input$geo$country
 ```
 
-This function is not implemented yet.
+Merge Map Table and Geo data
 
 ```r
-# map_table_adj_geo <- table + geo
+input$latlong <- map_table_adj
+input$geo <- geo
+
+map_table_adj_geo <- map_latlong_geo(input)
 ```
-
-You can use Geo data in the plot step.
-
 
 
 ### Step 04. Calculate disease map
 
 ```r
 input <- base::list()
-input$geo$name <- "KOR" # "OSM" or "GADM" or "KOR"
-input$geo$country <- "KOR"
-input$geo$level <- 2
+input$geo <- map_table_adj_geo
+
 graph_file_path <- trans_geo_to_graph(input)
 
 input <- base::list()
-input$table <- map_table_adj # map_table_adj_geo
+input$table <- map_table_adj_geo
 input$graph_file_path <- graph_file_path
 
 map_deriv <- calculate_disease_map(input)
@@ -205,34 +203,33 @@ cluster_table_adj <- calculate_adjust_age_sex_indirectly(input)
 
 Read Geo data
 
-- [OpenStreetMap](https://www.openstreetmap.org/)
 - [GADM 3.6](https://gadm.org/)
 - [Administrative area data of South Korea](http://www.gisdeveloper.co.kr/?p=2332)
 
 ```r
 input <- base::list()
-input$geo$name <- "KOR" # "OSM" or "GADM" or "KOR"
+input$geo$name <- "KOR" # "GADM" or "KOR"
 input$geo$country <- "KOR"
 input$geo$level <- 2
 
 geo <- get_geo_data(input)
 ```
 
-This function is not implemented yet.
+Merge Cluster Table and Geo data
 
 ```r
-# cluster_table_adj_geo <- table + geo
+input$latlong <- cluster_table_adj
+input$geo <- geo
+
+cluster_table_adj_geo <- map_latlong_geo(input)
 ```
-
-You can use Geo data in the plot step.
-
 
 
 ### Step 04. Calculate disease cluster
 
 ```r
 input <- base::list()
-input$table <- cluster_table_adj # cluster_table_adj_geo
+input$table <- cluster_table_adj_geo
 
 cluster_deriv <- calculate_disease_cluster(input)
 ```
