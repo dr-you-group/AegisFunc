@@ -22,7 +22,7 @@ get_geo_data <- function(input,
   )
 
   geo$otype <- name
-  geo$oid <- base::seq(1:length(geo))
+  geo$oid <- base::seq(1:base::nrow(geo))
 
   name_idx <- base::grep(pattern, base::names(geo))
   name_len <- base::length(name_idx)
