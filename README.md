@@ -113,19 +113,19 @@ Merge Map Table and Geo data
 input$latlong <- map_table_adj
 input$geo <- geo
 
-map_table_adj_geo <- map_latlong_geo(input)
+geo_map <- map_latlong_geo(input)
 ```
 
 ### Step 04. Calculate disease map
 
 ``` r
 input <- base::list()
-input$geo <- map_table_adj_geo
+input$geo <- geo
 
 graph_file_path <- trans_geo_to_graph(input)
 
 input <- base::list()
-input$table <- map_table_adj_geo
+input$table <- map_table_adj
 input$graph_file_path <- graph_file_path
 
 map_deriv <- calculate_disease_map(input)
@@ -199,14 +199,14 @@ Merge Cluster Table and Geo data
 input$latlong <- cluster_table_adj
 input$geo <- geo
 
-cluster_table_adj_geo <- map_latlong_geo(input)
+geo_map <- map_latlong_geo(input)
 ```
 
 ### Step 04. Calculate disease cluster
 
 ``` r
 input <- base::list()
-input$table <- cluster_table_adj_geo
+input$table <- cluster_table_adj
 
 cluster_deriv <- calculate_disease_cluster(input)
 ```
