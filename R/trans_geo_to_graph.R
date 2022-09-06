@@ -1,6 +1,7 @@
 trans_geo_to_graph <- function(input,
                                 ...) {
   path <- base::getwd()
+  geo <- input$geo
   # name <- input$geo$name
   # country <- input$geo$country
   # level <- base::as.numeric(input$geo$level)
