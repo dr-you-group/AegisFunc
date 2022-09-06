@@ -33,7 +33,7 @@ get_geo_data <- function(input,
     geo$oname <- geo@data[, name_idx]
   }
 
-  base::colnames(geo) <- base::tolower(base::colnames(geo))
+  base::colnames(geo@data) <- base::tolower(base::colnames(geo@data))
 
   geo
 }
