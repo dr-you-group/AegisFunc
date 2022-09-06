@@ -120,7 +120,8 @@ geo_map <- map_latlong_geo(input)
 Arrange table
 
 ```r
-map_table_arr
+input$table <- geo_map
+map_table_arr <- calculate_count_with_geo_oid(input)
 ```
 
 
@@ -220,7 +221,8 @@ geo_map <- map_latlong_geo(input)
 Arrange table
 
 ```r
-cluster_table_arr
+input$table <- geo_map
+cluster_table_arr <- calculate_count_with_geo_oid(input)
 ```
 
 

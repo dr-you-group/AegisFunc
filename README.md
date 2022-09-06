@@ -107,7 +107,8 @@ geo_map <- map_latlong_geo(input)
 Arrange table
 
 ``` r
-map_table_arr
+input$table <- geo_map
+map_table_arr <- calculate_count_with_geo_oid(input)
 ```
 
 ### Step 03. Adjust by age and sex
@@ -199,7 +200,8 @@ geo_map <- map_latlong_geo(input)
 Arrange table
 
 ``` r
-cluster_table_arr
+input$table <- geo_map
+cluster_table_arr <- calculate_count_with_geo_oid(input)
 ```
 
 ### Step 03. Adjust by age and sex
