@@ -119,7 +119,7 @@ input$geo$name <- "KOR" # "GADM" or "KOR"
 input$geo$country <- "KOR"
 input$geo$level <- 2
 
-geo <- get_geo_data(input)  country <- input$geo$country
+geo <- get_geo_data(input)
 ```
 
 Merge Map Table and Geo data
