@@ -2,9 +2,9 @@ calculate_disease_cluster <- function(input,
                                       ...) {
   table <- input$table
 
-  geo <- SpatialEpi::latlong2grid(table[, c(longitude, latitude)])
-  cases <- base::tapply(table$outcome_count, table$location_id, sum)
-  population <- base::tapply(table$target_count, table$location_id, sum)
+  geo <- SpatialEpi::latlong2grid(table[, c(long, lat)])
+  cases <- base::tapply(table$outcome_count, table$oid, sum)
+  population <- base::tapply(table$target_count, table$oid, sum)
   pop_upper_bound <- 0.1
   n_simulations <- 999
   alpha_level <- 0.05

@@ -21,6 +21,11 @@ get_geo_data <- function(input,
     }
   )
 
+  latlong <- base::data.frame(sp::coordinates(geo))
+  base::colnames(latlong) <- base::c("long", "lat")
+
+  geo <- base::cbind(geo, latlong)
+
   geo$otype <- name
   geo$oid <- base::seq(1:base::nrow(geo))
 

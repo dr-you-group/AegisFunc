@@ -14,11 +14,6 @@ read_kor_shp <- function(input,
 
   geo <- sp::spTransform(geo, to_crs)
 
-  latlong <- base::data.frame(sp::coordinates(geo))
-  base::colnames(latlong) <- base::c("long", "lat")
-
-  geo <- base::cbind(geo, latlong)
-
   geo
 }
 

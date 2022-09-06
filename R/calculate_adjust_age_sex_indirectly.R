@@ -20,7 +20,7 @@ calculate_adjust_age_sex_indirectly <- function(input,
   table <- dplyr::left_join(table, table_std, by = base::c("age_category", "sex_category"))
   table$expected <- table$target_count * table$rate
 
-  table <- dplyr::group_by(table, location_id, latitude, longitude)
+  table <- dplyr::group_by(table, oid, lat, long)
   table <- dplyr::summarise(
     table,
     target_count = base::sum(target_count),
