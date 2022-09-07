@@ -154,7 +154,7 @@ Plot with data
 
 ``` r
 input <- base::list()
-input$data <- datas
+input$data <- data
 input$stats <- map_deriv$stats
 # input$data$indicator <- map_deriv$arranged_table$indicator
 # input$data$indicator <- stats::rnorm(n = length(geo), 150, 30)
