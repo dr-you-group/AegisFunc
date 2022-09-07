@@ -5,10 +5,6 @@ get_geo_data <- function(input,
   level <- base::as.numeric(input$geo$level)
 
   switch(name,
-    # "OSM" = {
-    #   geo <- read_osm_data(input)
-    #   pattern <- "^name$"
-    # },
     "GADM" = {
       geo <- read_gadm_data(input)
       pattern <- "^NAME_([1-9])"
