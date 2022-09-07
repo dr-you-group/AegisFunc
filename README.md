@@ -33,7 +33,7 @@ devtools::load_all()
 -   Connection string of PostgreSQL:
     “jdbc:postgresql://localhost:5432/cdm?user=user&password=password”
 
-We have tested with PostgreSQL.
+We have tested with SQL Server 2019.
 
 ``` r
 input <- base::list()
