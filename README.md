@@ -140,12 +140,24 @@ map_deriv <- calculate_disease_map(input)
 
 ### Step 05. Plot
 
+Merge geo data with derivatives
+
 ``` r
 input <- base::list()
-input$data <- geo
+input$geo <- geo
+input$deriv <- map_deriv$arranged_table
+
+data <- merge_geo_with_deriv(input)
+```
+
+Plot with data
+
+``` r
+input <- base::list()
+input$data <- datas
+input$stats <- map_deriv$stats
 # input$data$indicator <- map_deriv$arranged_table$indicator
-# input$stats <- map_deriv$stats
-input$data$indicator <- stats::rnorm(n = length(geo), 150, 30)
+# input$data$indicator <- stats::rnorm(n = length(geo), 150, 30)
 
 map_map <- get_disease_map_map(input)
 map_map
@@ -227,12 +239,24 @@ cluster_deriv <- calculate_disease_cluster(input)
 
 ### Step 05. Plot
 
+Merge geo data with derivatives
+
 ``` r
 input <- base::list()
-input$data <- geo
+input$geo <- geo
+input$deriv <- cluster_deriv$arranged_table
+
+data <- merge_geo_with_deriv(input)
+```
+
+Plot with data
+
+``` r
+input <- base::list()
+input$data <- data
+input$stats <- cluster_deriv$stats
 # input$data$indicator <- cluster_deriv$arranged_table$indicator
-# input$stats <- cluster_deriv$stats
-input$data$indicator <- stats::rnorm(n = length(geo), 150, 30)
+# input$data$indicator <- stats::rnorm(n = length(geo), 150, 30)
 
 cluster_map <- get_disease_cluster_map(input)
 cluster_map
