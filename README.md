@@ -246,7 +246,7 @@ input$adj$conf_level <- 0.95
 table_adj <- calculate_adjust_age_sex_indirectly(input)
 ```
 
-### Step 04. Calculate
+### Step 04. Calculate disease cluster
 
 Calculate disease cluster
 
