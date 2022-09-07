@@ -97,7 +97,7 @@ input$geo$level <- 2
 geo <- get_geo_data(input)
 ```
 
-Merge map table and geo data
+Merge cohort table and geo data
 
 ``` r
 input <- base::list()
@@ -213,7 +213,7 @@ input$geo$level <- 2
 geo <- get_geo_data(input)
 ```
 
-Merge cluster table with geo data
+Merge cohort table with geo data
 
 ``` r
 input <- base::list()
