@@ -10,12 +10,10 @@ get_leaflet_map <- function(input,
   color <- make_leaflet_color(color)
   popup <- make_leaflet_popup(input)
   bound <- make_leaflet_bound(data)
-  # view <- make_leaflet_view(data)
 
   input$color <- color
   input$popup <- popup
   input$bound <- bound
-  # input$view <- view
 
   map <- make_leaflet_map(input)
 
