@@ -74,6 +74,8 @@ table <- get_cohort_list_table(input)
 
 ### Step 01. Get cohort table
 
+Get cohort table from CDM/Atlas database
+
 ```r
 input <- base::list()
 input$conn_info <- conn_info
@@ -128,6 +130,8 @@ map_table_arr <- calculate_count_with_geo_oid(input)
 
 ### Step 03. Adjust by age and sex
 
+Adjust by age and sex
+
 ```r
 input <- base::list()
 input$table <- map_table_arr
@@ -142,12 +146,18 @@ map_table_adj <- calculate_adjust_age_sex_indirectly(input)
 
 ### Step 04. Calculate disease map
 
+Generate graph file from geo data
+
 ```r
 input <- base::list()
 input$geo <- geo
 
 graph_file_path <- trans_geo_to_graph(input)
+```
 
+Calculate disease map
+
+```r
 input <- base::list()
 input$table <- map_table_adj
 input$graph_file_path <- graph_file_path
@@ -186,6 +196,8 @@ map_map
 ## Disease Cluster
 
 ### Step 01. Get cohort table
+
+Get cohort table from CDM/Atlas database
 
 ```r
 input <- base::list()
@@ -241,6 +253,8 @@ cluster_table_arr <- calculate_count_with_geo_oid(input)
 
 ### Step 03. Adjust by age and sex
 
+Adjust by age and sex
+
 ```r
 input <- base::list()
 input$table <- cluster_table_arr
@@ -254,6 +268,8 @@ cluster_table_adj <- calculate_adjust_age_sex_indirectly(input)
 
 
 ### Step 04. Calculate disease cluster
+
+Calculate disease cluster
 
 ```r
 input <- base::list()
