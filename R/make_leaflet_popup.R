@@ -9,7 +9,7 @@ make_leaflet_popup <- function(input,
     "<strong>Indicator: </strong>", base::round(indicator, 2)
   )
 
-  if (base::length(stats) > 2) {
+  if (base::length(stats) > 1) {
     popup <- base::paste0(popup, "<br>", base::apply(stats, 1, p, pre = "<strong>", post = ": </strong>", collapse = "<br>"))
   }
 
