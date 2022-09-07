@@ -27,6 +27,9 @@ calculate_disease_cluster <- function(input,
   )
   names(stats) <- c("idx", "population", "number_of_cases", "expected_cases", "smr", "log_likelihood_ratio", "monte_carlo_rank", "p_value")
 
+  empty <- base::data.frame(idx = base::seq(1, base::nrow(table), 1))
+  stats <- base::merge(stats, empty, by = "idx", all.y = TRUE)
+
   arranged_table <- table
   arranged_table$indicator <- NA
   arranged_table[stats$idx, ]$indicator <- base::seq(1, base::length(stats$idx), 1)
