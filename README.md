@@ -77,7 +77,7 @@ input$query$time_at_risk_start_date <- "0"
 input$query$time_at_risk_end_date <- "0"
 input$query$time_at_risk_end_date_panel <- "cohort_start_date" # "cohort_start_date" or "cohort_end_date"
 
-cohort_table <- get_disease_map_table(input)
+cohort_table <- get_cohort_analysis_table(input)
 ```
 
 ### Step 02. Map cohort table (lat/long) with geo data
@@ -170,7 +170,7 @@ input <- base::list()
 input$data <- data
 input$stats <- deriv$stats
 
-plot <- get_disease_map_map(input)
+plot <- get_leaflet_map(input)
 plot
 ```
 
@@ -193,7 +193,7 @@ input$query$time_at_risk_start_date <- "0"
 input$query$time_at_risk_end_date <- "0"
 input$query$time_at_risk_end_date_panel <- "cohort_start_date" # "cohort_start_date" or "cohort_end_date"
 
-cohort_table <- get_disease_cluster_table(input)
+cohort_table <- get_cohort_analysis_table(input)
 ```
 
 ### Step 02. Map cohort table (lat/long) with geo data
@@ -276,6 +276,6 @@ input <- base::list()
 input$data <- data
 input$stats <- deriv$stats
 
-plot <- get_disease_cluster_map(input)
+plot <- get_leaflet_map(input)
 plot
 ```
