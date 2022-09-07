@@ -55,7 +55,7 @@ input <- base::list()
 input$conn_info <- conn_info
 input$query$result_database_schema <- "[RESULT_DB_SCHEMA]"
 
-table <- get_cohort_list_table(input)
+cohort_list <- get_cohort_list_table(input)
 ```
 
 ## Disease Map
@@ -80,7 +80,7 @@ input$query$time_at_risk_end_date_panel <- "cohort_start_date" # "cohort_start_d
 cohort_table <- get_disease_map_table(input)
 ```
 
-### Step 02. Merge cohort table with geo data
+### Step 02. Map cohort table (lat/long) with geo data
 
 Read geo data
 
@@ -97,7 +97,7 @@ input$geo$level <- 2
 geo <- get_geo_data(input)
 ```
 
-Merge cohort table and geo data
+Map cohort table (lat/long) with geo data
 
 ``` r
 input <- base::list()
@@ -196,7 +196,7 @@ input$query$time_at_risk_end_date_panel <- "cohort_start_date" # "cohort_start_d
 cohort_table <- get_disease_cluster_table(input)
 ```
 
-### Step 02. Merge cohort table with geo data
+### Step 02. Map cohort table (lat/long) with geo data
 
 Read geo data
 
@@ -213,7 +213,7 @@ input$geo$level <- 2
 geo <- get_geo_data(input)
 ```
 
-Merge cohort table with geo data
+Map cohort table (lat/long) with geo data
 
 ``` r
 input <- base::list()
