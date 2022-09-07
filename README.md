@@ -82,7 +82,7 @@ map_table <- get_disease_map_table(input)
 
 ### Step 02. Merge Table with Geo data
 
-Read Geo data
+Read geo data
 
 -   [GADM 3.6](https://gadm.org/)
 -   [Administrative area data of South
@@ -97,9 +97,10 @@ input$geo$level <- 2
 geo <- get_geo_data(input)
 ```
 
-Merge Map Table and Geo data
+Merge map table and geo data
 
 ``` r
+input <- base::list()
 input$latlong <- map_table
 input$geo <- geo
 
@@ -109,7 +110,9 @@ geo_map <- map_latlong_geo(input)
 Arrange table
 
 ``` r
+input <- base::list()
 input$table <- geo_map
+
 map_table_arr <- calculate_count_with_geo_oid(input)
 ```
 
@@ -197,7 +200,7 @@ cluster_table <- get_disease_cluster_table(input)
 
 ### Step 02. Merge Table with Geo data
 
-Read Geo data
+Read geo data
 
 -   [GADM 3.6](https://gadm.org/)
 -   [Administrative area data of South
@@ -212,9 +215,10 @@ input$geo$level <- 2
 geo <- get_geo_data(input)
 ```
 
-Merge Cluster Table and Geo data
+Merge cluster table and geo data
 
 ``` r
+input <- base::list()
 input$latlong <- cluster_table
 input$geo <- geo
 
@@ -224,7 +228,9 @@ geo_map <- map_latlong_geo(input)
 Arrange table
 
 ``` r
+input <- base::list()
 input$table <- geo_map
+
 cluster_table_arr <- calculate_count_with_geo_oid(input)
 ```
 
