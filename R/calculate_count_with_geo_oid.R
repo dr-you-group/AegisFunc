@@ -9,21 +9,6 @@ calculate_count_with_geo_oid <- function(input,
     data = table,
     FUN = base::sum
   )
-  # table <- stats::aggregate(
-  #   cbind(
-  #     zip, location_id
-  #   ) ~ oid + oname,
-  #   data = table,
-  #   FUN = base::sum
-  # )
-  #
-  # stats::aggregate(
-  #   cbind(
-  #     zip, location_id
-  #   ) ~ oid + oname,
-  #   data = table,
-  #   FUN = base::sum
-  # )
 
   table
 }
