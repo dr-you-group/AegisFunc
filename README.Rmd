@@ -47,11 +47,9 @@ We have tested with SQL Server 2019.
 
 ```r 
 input <- base::list()
-input$conn$dbms <- "postgresql"
+input$conn$dbms <- "sql server"
 input$conn$path_to_driver <- getwd()
-input$conn$connection_string <- "jdbc:postgresql://[SERVER_IP]:[SERVER_PORT]/[CDM_DB_NAME]"
-input$conn$user <- "****"
-input$conn$password <- "****"
+input$conn$connection_string <- "jdbc:sqlserver://[SERVER_IP]:[SERVER_PORT];user=[USER_ID];password=[USER_PW];databaseName=[CDM_DB_NAME]"
 
 conn_info <- get_connection_details(input)
 ```
