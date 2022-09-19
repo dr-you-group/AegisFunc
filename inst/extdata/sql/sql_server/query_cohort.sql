@@ -1,4 +1,4 @@
-WITH 
+WITH
 target_cohort AS (
 SELECT DISTINCT
   cohort_definition_id,
@@ -81,8 +81,6 @@ FROM including_cohort_w_person c
 INNER JOIN @cdm_database_schema.location l
 ON
   c.location_id = l.location_id
-ORDER BY 
-  c.location_id
 ),
 all_in_target_cohort AS (
 SELECT DISTINCT
