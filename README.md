@@ -48,6 +48,20 @@ input$conn$connection_string <- "jdbc:sqlserver://[SERVER_IP]:[SERVER_PORT];user
 conn_info <- get_connection_details(input)
 ```
 
+### Check CDM version
+
+You must confirm your CDM version.
+
+Because we **only support for CDM v5.4.0 or above**.
+
+``` r
+input <- base::list()
+input$conn_info <- conn_info
+input$query$cdm_database_schema <- "[CDM_DB_SCHEMA]"
+
+cdm_version <- get_cdm_version(input)
+```
+
 ### Load cohort list
 
 Query defined cohort list.
