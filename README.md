@@ -6,10 +6,11 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-AegisFunc is a tool for Spatio-temporal epidemiology based on OHDSI CDM.
+AegisFunc is a tool for Spatio-temporal epidemiology based on OHDSI CDM
+v5.4.0.
+
 AegisFunc originated from the Aegis project that is an open-source
-spatial analysis tool based on CDM v5.4.0.
-<https://github.com/ABMI/Aegis>.
+spatial analysis tool based on CDM. <https://github.com/ABMI/Aegis>.
 
 -   We use latitude and longitude columns in Location table.
 
