@@ -59,7 +59,8 @@ input <- base::list()
 input$conn_info <- conn_info
 input$query$cdm_database_schema <- "[CDM_DB_SCHEMA]"
 
-cdm_version <- get_cdm_source(input)[1]$cdm_version
+cdm_source <- get_cdm_source(input)
+cdm_version <- cdm_source[c("cdm_version")]
 ```
 
 ### Load cohort list
