@@ -140,6 +140,8 @@ FROM
   FROM all_in_target_cohort_w_person c
   INNER JOIN @cdm_database_schema.location l
   ON
+    c.location_id = l.location_id
+  AND
     c.cohort_definition_id = @target_cohort_definition_id
   AND
     CAST('@cohort_start_date' AS DATE) <= c.cohort_start_date
