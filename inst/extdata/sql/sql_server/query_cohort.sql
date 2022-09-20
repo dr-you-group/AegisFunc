@@ -43,7 +43,7 @@ AND
   DATEADD(day, CAST('@time_at_risk_end_date' AS INTEGER), t.@time_at_risk_end_date_panel) <= o.cohort_end_date
 ),
 including_cohort_w_person AS (
-SELECT
+SELECT DISTINCT
   c.cohort_definition_id,
   c.subject_id,
   c.cohort_start_date,
@@ -70,7 +70,7 @@ ON
   c.subject_id = p.person_id
 ),
 including_cohort_w_person_w_location AS (
-SELECT
+SELECT DISTINCT
   c.subject_id,
   l.location_id,
   l.latitude,
@@ -93,7 +93,7 @@ WHERE
   cohort_definition_id = @target_cohort_definition_id
 ),
 all_in_target_cohort_w_person AS (
-SELECT
+SELECT DISTINCT
   c.cohort_definition_id,
   c.subject_id,
   c.cohort_start_date,
