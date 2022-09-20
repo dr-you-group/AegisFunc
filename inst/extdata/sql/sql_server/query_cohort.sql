@@ -33,7 +33,7 @@ FROM outcome_cohort o
 LEFT JOIN target_cohort t
 ON
   t.subject_id = o.subject_id
-WHERE
+AND
   t.cohort_start_date <= o.cohort_start_date
 AND
   t.cohort_end_date >= o.cohort_start_date
@@ -70,7 +70,7 @@ ON
   c.subject_id = p.person_id
 ),
 including_cohort_w_person_w_location AS (
-SELECT --DISTINCT
+SELECT
   c.subject_id,
   l.location_id,
   l.latitude,
@@ -119,6 +119,7 @@ LEFT JOIN @cdm_database_schema.person p
 ON
   c.subject_id = p.person_id
 )
+
 
 SELECT
   t.location_id,
