@@ -2,9 +2,10 @@ calculate_disease_cluster <- function(input,
                                       ...) {
   table <- input$table
 
-  geo <- SpatialEpi::latlong2grid(table[, c(long, lat)])
+  geo <- SpatialEpi::latlong2grid(table[, c("longitude", "latitude")])
   cases <- base::tapply(table$outcome_count, table$oid, sum)
   population <- base::tapply(table$target_count, table$oid, sum)
+  expected <- table$expected
   pop_upper_bound <- 0.1
   n_simulations <- 999
   alpha_level <- 0.05
@@ -21,10 +22,11 @@ calculate_disease_cluster <- function(input,
     plot = plot
   )
 
-  stats <- base::rbind(
-    base::as.data.frame(results$most.likely.cluster),
-    base::as.data.frame(results$secondary.clusters)
-  )
+  stats <- base::as.data.frame(results$most.likely.cluster)
+  for(i in 1:base::length(results$secondary.clusters)) {
+    stats <- base::rbind(stats, base::as.data.frame(results$secondary.clusters[[i]]))
+  }
+
   names(stats) <- c("idx", "population", "number_of_cases", "expected_cases", "smr", "log_likelihood_ratio", "monte_carlo_rank", "p_value")
 
   empty <- base::data.frame(idx = base::seq(1, base::nrow(table), 1))

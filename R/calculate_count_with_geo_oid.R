@@ -1,5 +1,5 @@
 calculate_count_with_geo_oid <- function(input,
-                                     ...) {
+                                         ...) {
   table <- input$table
 
   table$target_count[is.na(table$target_count)] <- 0
@@ -8,7 +8,7 @@ calculate_count_with_geo_oid <- function(input,
   table <- stats::aggregate(
     cbind(
       target_count, outcome_count
-    ) ~ oid + age_category + sex_category,
+    ) ~ oid + latitude + longitude + age_category + sex_category,
     data = table,
     FUN = base::sum
   )
