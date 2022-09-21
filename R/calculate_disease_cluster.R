@@ -36,9 +36,6 @@ calculate_disease_cluster <- function(input,
   arranged_table$indicator <- NA
   arranged_table[!is.na(stats$log_likelihood_ratio), ]$indicator <- base::seq(1, base::sum(!is.na(stats$log_likelihood_ratio)), 1)
 
-  # stats$indicator <- NA
-  # stats[!is.na(stats$log_likelihood_ratio), ]$indicator <- base::seq(1, base::sum(!is.na(stats$log_likelihood_ratio)), 1)
-
 
   output <- base::list()
   output$table <- table
