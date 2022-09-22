@@ -1,5 +1,5 @@
 Package: AegisFunc
-Title: What the Package Does (One Line, Title Case)
+Title: AegisFunc
 Version: 0.0.0.9000
 Authors@R: 
   c(
@@ -10,7 +10,7 @@ Authors@R:
     person("Seng Chan", "You", , "applegna@gmail.com", role = c("cre", "cph"),
            comment = c(ORCID = "0000-0002-5052-6399"))
   )
-Description: What the package does (one paragraph).
+Description: AegisFunc is a tool for Spatio-temporal epidemiology based on OHDSI CDM.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
