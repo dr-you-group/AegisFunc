@@ -6,9 +6,9 @@ Authors@R:
     person("Sungjae", "Jung", , "sungjae.2425@gmail.com", role = c("aut"),
            comment = c(ORCID = "0000-0001-8266-0480")),
     person("Jaehyeong", "Cho", , "boyinai03@gmail.com ", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0000-0000-0000")),
+           comment = c(ORCID = "0000-0001-7213-5033")),
     person("Seng Chan", "You", , "applegna@gmail.com", role = c("cre", "cph"),
-           comment = c(ORCID = "0000-0000-0000-0000")),
+           comment = c(ORCID = "0000-0002-5052-6399"))
   )
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
