@@ -15,6 +15,7 @@ Imports:
     dplyr,
     leaflet,
     raster,
+    rgdal,
     rgeos,
     sp,
     SpatialEpi,
