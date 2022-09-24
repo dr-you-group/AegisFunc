@@ -23,7 +23,7 @@ calculate_disease_cluster <- function(input,
   )
 
   stats <- base::as.data.frame(results$most.likely.cluster)
-  for(i in 1:base::length(results$secondary.clusters)) {
+  for (i in 1:base::length(results$secondary.clusters)) {
     stats <- base::rbind(stats, base::as.data.frame(results$secondary.clusters[[i]]))
   }
 

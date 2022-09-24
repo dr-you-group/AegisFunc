@@ -1,5 +1,5 @@
 get_cdm_source <- function(input,
-                                  ...) {
+                           ...) {
   conn_info <- input$conn_info
   cdm_database_schema <- input$query$cdm_database_schema
 
