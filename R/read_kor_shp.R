@@ -14,8 +14,8 @@ read_kor_shp <- function(input,
 
   shp_file_name <- base::paste0(country, "_", level)
 
-  # shp_file_path <- base::system.file("extdata", "geo", "shp", shp_file_name, base::paste0("shp_file_name", ".shp"), package = "AegisFunc")
-  shp_file_path <- base::file.path(base::getwd(), "inst", "extdata", "geo", "shp", shp_file_name, base::paste0(shp_file_name, ".shp"))
+  shp_file_path <- base::system.file("extdata", "geo", "shp", shp_file_name, base::paste0("shp_file_name", ".shp"), package = "AegisFunc")
+  # shp_file_path <- base::file.path(base::getwd(), "inst", "extdata", "geo", "shp", shp_file_name, base::paste0(shp_file_name, ".shp"))
 
   geo <- raster::shapefile(shp_file_path, encoding = "EUC-KR")
 

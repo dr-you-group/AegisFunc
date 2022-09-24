@@ -21,8 +21,8 @@ query_cdm_database <- function(sql_file_name = NULL,
                                integer_as_numeric = base::getOption("databaseConnectorIntegerAsNumeric", default = TRUE),
                                integer64_as_numeric = base::getOption("databaseConnectorInteger64AsNumeric", default = TRUE),
                                ...) {
-  # sql_file_path <- base::system.file("extdata", "sql", "sql_server", base::paste0(sql_file_name, ".sql"), package = "AegisFunc")
-  sql_file_path <- base::file.path(base::getwd(), "inst", "extdata", "sql", "sql_server", base::paste0(sql_file_name, ".sql"))
+  sql_file_path <- base::system.file("extdata", "sql", "sql_server", base::paste0(sql_file_name, ".sql"), package = "AegisFunc")
+  # sql_file_path <- base::file.path(base::getwd(), "inst", "extdata", "sql", "sql_server", base::paste0(sql_file_name, ".sql"))
 
   sql <- SqlRender::readSql(sourceFile = sql_file_path)
   sql <- SqlRender::renderSql(sql = sql, ...)$sql
