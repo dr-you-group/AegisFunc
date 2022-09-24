@@ -18,20 +18,19 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-AegisFunc is a tool for Spatio-temporal epidemiology based on OHDSI CDM v5.4.0.
-
+AegisFunc is a tool for Spatio-temporal epidemiology based on OHDSI CDM v5.4.0.  
 AegisFunc originated from the Aegis project that is an open-source spatial analysis tool based on CDM.
-<https://github.com/ABMI/Aegis>.
+<https://github.com/ABMI/Aegis>.  
 
 
 ## Requirements
 
-OHDSI CDM v5.4.0
-- We use latitude and longitude fields in Location table (updated on v5.4.0).
+OHDSI CDM v5.4.0  
+- We use latitude and longitude fields in Location table (updated on v5.4.0).  
 
-INLA package
-- INLA package is not supported by CRAN.
-- You can install manually from the r-inla repository
+INLA package  
+- INLA package is not supported by CRAN.  
+- You can install manually from the r-inla repository  
 ``` r
 install.packages("INLA", repos = c(getOption("repos"), INLA = "https://inla.r-inla-download.org/R/stable"), dep = TRUE)
 ```
@@ -39,13 +38,13 @@ install.packages("INLA", repos = c(getOption("repos"), INLA = "https://inla.r-in
 
 ## Installation
 
-You can install the development version of AegisFunc like so:
+You can install the development version of AegisFunc like so:  
 
 ``` r
 devtools::install()
 ```
 
-We recommend using it by loading all functions.
+We recommend using it by loading all functions.  
 
 ``` r
 devtools::load_all()
@@ -55,10 +54,10 @@ devtools::load_all()
 
 ### Database connection
 
-- Connection string of SQL Server: "jdbc:sqlserver://localhost:1433;databaseName=cdm;user=user;password=password"
-- Connection string of PostgreSQL: "jdbc:postgresql://localhost:5432/cdm?user=user&password=password"
+- Connection string of SQL Server: "jdbc:sqlserver://localhost:1433;databaseName=cdm;user=user;password=password"  
+- Connection string of PostgreSQL: "jdbc:postgresql://localhost:5432/cdm?user=user&password=password"  
 
-We have tested with SQL Server 2019.
+We have tested with SQL Server 2019.  
 
 ```r 
 input <- base::list()
@@ -72,9 +71,8 @@ conn_info <- get_connection_details(input)
 
 ### Check CDM version
 
-You must confirm your CDM version.
-
-Because we **only support for CDM v5.4.0 or above**.
+You must confirm your CDM version.  
+Because we **only support for CDM v5.4.0 or above**.  
 
 ```r
 input <- base::list()
@@ -88,7 +86,7 @@ cdm_version <- cdm_source[c("cdm_version")]
 
 ### Load cohort list
 
-Query defined cohort list.
+Query defined cohort list.  
 
 ```r
 input <- base::list()
@@ -103,7 +101,7 @@ cohort_list <- get_cohort_list_table(input)
 
 ### Step 01. Get cohort table
 
-Get cohort table from CDM/Atlas database
+Get cohort table from CDM/Atlas database  
 
 ```r
 input <- base::list()
@@ -125,10 +123,10 @@ cohort_table <- get_cohort_analysis_table(input)
 
 ### Step 02. Map cohort table (lat/long) with geo data
 
-Read geo data
+Read geo data  
 
-- [GADM 3.6](https://gadm.org/)
-- [Administrative area data of South Korea](http://www.gisdeveloper.co.kr/?p=2332)
+- [GADM 3.6](https://gadm.org/)  
+- [Administrative area data of South Korea](http://www.gisdeveloper.co.kr/?p=2332)  
 
 ```r
 input <- base::list()
@@ -139,7 +137,7 @@ input$geo$level <- 2
 geo <- get_geo_data(input)
 ```
 
-Map cohort table (lat/long) with geo data
+Map cohort table (lat/long) with geo data  
 
 ```r
 input <- base::list()
@@ -149,7 +147,7 @@ input$geo <- geo
 geo_map <- map_latlong_geo(input)
 ```
 
-Arrange table
+Arrange table  
 
 ```r
 input <- base::list()
@@ -162,7 +160,7 @@ table_arr <- calculate_count_with_geo_oid(input)
 
 ### Step 03. Adjustment
 
-Adjusting for age and sex
+Adjusting for age and sex  
 
 ```r
 input <- base::list()
@@ -178,7 +176,7 @@ table_adj <- calculate_adjust_age_sex_indirectly(input)
 
 ### Step 04. Calculate disease map
 
-Generate graph file from geo data
+Generate graph file from geo data  
 
 ```r
 input <- base::list()
@@ -187,7 +185,7 @@ input$geo <- geo
 graph_file_path <- trans_geo_to_graph(input)
 ```
 
-Calculate disease map
+Calculate disease map  
 
 ```r
 input <- base::list()
@@ -201,7 +199,7 @@ deriv <- calculate_disease_map(input)
 
 ### Step 05. Plot
 
-Merge geo data with derivatives
+Merge geo data with derivatives  
 
 ```r
 input <- base::list()
@@ -211,7 +209,7 @@ input$deriv <- deriv$arranged_table
 data <- merge_geo_with_deriv(input)
 ```
 
-Plot with data
+Plot with data  
 
 ```r
 input <- base::list()
@@ -227,7 +225,7 @@ plot
 
 ### Step 01. Get cohort table
 
-Get cohort table from CDM/Atlas database
+Get cohort table from CDM/Atlas database  
 
 ```r
 input <- base::list()
@@ -249,10 +247,10 @@ cohort_table <- get_cohort_analysis_table(input)
 
 ### Step 02. Map cohort table (lat/long) with geo data
 
-Read geo data
+Read geo data  
 
-- [GADM 3.6](https://gadm.org/)
-- [Administrative area data of South Korea](http://www.gisdeveloper.co.kr/?p=2332)
+- [GADM 3.6](https://gadm.org/)  
+- [Administrative area data of South Korea](http://www.gisdeveloper.co.kr/?p=2332)  
 
 ```r
 input <- base::list()
@@ -263,7 +261,7 @@ input$geo$level <- 2
 geo <- get_geo_data(input)
 ```
 
-Map cohort table (lat/long) with geo data
+Map cohort table (lat/long) with geo data  
 
 ```r
 input <- base::list()
@@ -273,7 +271,7 @@ input$geo <- geo
 geo_map <- map_latlong_geo(input)
 ```
 
-Arrange table
+Arrange table  
 
 ```r
 input <- base::list()
@@ -286,7 +284,7 @@ table_arr <- calculate_count_with_geo_oid(input)
 
 ### Step 03. Adjustment
 
-Adjusting for age and sex
+Adjusting for age and sex  
 
 ```r
 input <- base::list()
@@ -302,7 +300,7 @@ table_adj <- calculate_adjust_age_sex_indirectly(input)
 
 ### Step 04. Calculate disease cluster
 
-Calculate disease cluster
+Calculate disease cluster  
 
 ```r
 input <- base::list()
@@ -315,7 +313,7 @@ deriv <- calculate_disease_cluster(input)
 
 ### Step 05. Plot
 
-Merge geo data with derivatives
+Merge geo data with derivatives  
 
 ```r
 input <- base::list()
@@ -325,7 +323,7 @@ input$deriv <- deriv$arranged_table
 data <- merge_geo_with_deriv(input)
 ```
 
-Plot with data
+Plot with data  
 
 ```r
 input <- base::list()

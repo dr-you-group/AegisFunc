@@ -7,18 +7,19 @@
 <!-- badges: end -->
 
 AegisFunc is a tool for Spatio-temporal epidemiology based on OHDSI CDM
-v5.4.0.
-
+v5.4.0.  
 AegisFunc originated from the Aegis project that is an open-source
 spatial analysis tool based on CDM. <https://github.com/ABMI/Aegis>.
 
 ## Requirements
 
-OHDSI CDM v5.4.0 - We use latitude and longitude fields in Location
-table (updated on v5.4.0).
+OHDSI CDM v5.4.0  
+- We use latitude and longitude fields in Location table (updated on
+v5.4.0).
 
-INLA package - INLA package is not supported by CRAN. - You can install
-manually from the r-inla repository
+INLA package  
+- INLA package is not supported by CRAN.  
+- You can install manually from the r-inla repository
 
 ``` r
 install.packages("INLA", repos = c(getOption("repos"), INLA = "https://inla.r-inla-download.org/R/stable"), dep = TRUE)
@@ -43,7 +44,7 @@ devtools::load_all()
 ### Database connection
 
 -   Connection string of SQL Server:
-    “jdbc:sqlserver://localhost:1433;databaseName=cdm;user=user;password=password”
+    “jdbc:sqlserver://localhost:1433;databaseName=cdm;user=user;password=password”  
 -   Connection string of PostgreSQL:
     “jdbc:postgresql://localhost:5432/cdm?user=user&password=password”
 
@@ -60,8 +61,7 @@ conn_info <- get_connection_details(input)
 
 ### Check CDM version
 
-You must confirm your CDM version.
-
+You must confirm your CDM version.  
 Because we **only support for CDM v5.4.0 or above**.
 
 ``` r
@@ -111,7 +111,7 @@ cohort_table <- get_cohort_analysis_table(input)
 
 Read geo data
 
--   [GADM 3.6](https://gadm.org/)
+-   [GADM 3.6](https://gadm.org/)  
 -   [Administrative area data of South
     Korea](http://www.gisdeveloper.co.kr/?p=2332)
 
@@ -227,7 +227,7 @@ cohort_table <- get_cohort_analysis_table(input)
 
 Read geo data
 
--   [GADM 3.6](https://gadm.org/)
+-   [GADM 3.6](https://gadm.org/)  
 -   [Administrative area data of South
     Korea](http://www.gisdeveloper.co.kr/?p=2332)
 
