@@ -90,7 +90,7 @@ cohort_list <- get_cohort_list_table(input)
 
 ## Disease Map/Cluster
 
-### Step 01. Get cohort table
+### Step 01. Prepare Data
 
 Get cohort table from CDM/Atlas database
 
@@ -109,8 +109,6 @@ input$query$time_at_risk_end_date_panel <- "cohort_start_date" # "cohort_start_d
 
 cohort_table <- get_cohort_analysis_table(input)
 ```
-
-### Step 02. Map cohort table (lat/long) with geo data
 
 Read geo data
 
@@ -146,7 +144,7 @@ input$table <- geo_map
 table_arr <- calculate_count_with_geo_oid(input)
 ```
 
-### Step 03. Adjustment
+### Step 02. Adjustment
 
 Adjusting for age and sex
 
@@ -160,7 +158,7 @@ input$adj$conf_level <- 0.95
 table_adj <- calculate_adjust_age_sex_indirectly(input)
 ```
 
-### Step 04-1. Calculate disease map
+### Step 03-1. Calculate disease map
 
 Generate graph file from geo data
 
@@ -181,7 +179,7 @@ input$graph_file_path <- graph_file_path
 deriv <- calculate_disease_map(input)
 ```
 
-### Step 04-2. Calculate disease cluster
+### Step 03-2. Calculate disease cluster
 
 Calculate disease cluster
 
@@ -192,7 +190,7 @@ input$table <- table_adj
 deriv <- calculate_disease_cluster(input)
 ```
 
-### Step 05. Plot
+### Step 04. Plot
 
 Merge geo data with derivatives
 
