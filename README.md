@@ -39,10 +39,12 @@ You can install the development version of AegisFunc like so:
 devtools::install()
 ```
 
-We recommend using it by loading all functions.
+## Load
+
+Load package before use.
 
 ``` r
-devtools::load_all()
+library(AegisFunc)
 ```
 
 ## Check your CDM database
