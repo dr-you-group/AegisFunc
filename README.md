@@ -25,6 +25,9 @@ INLA package
 install.packages("INLA", repos = c(getOption("repos"), INLA = "https://inla.r-inla-download.org/R/stable"), dep = TRUE)
 ```
 
+R v4.2  
+- Latest version of INLA requires R v4.2 or above
+
 ## Installation
 
 You can install the development version of AegisFunc like so:
