@@ -41,7 +41,7 @@ devtools::install()
 
 ## Load
 
-Load package before use.
+Load AegisFunc package before use.
 
 ``` r
 library(AegisFunc)
