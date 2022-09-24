@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 read_kor_shp <- function(input,
                          ...) {
   country <- input$geo$country

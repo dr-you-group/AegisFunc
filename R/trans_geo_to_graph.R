@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 trans_geo_to_graph <- function(input,
                                ...) {
   path <- base::getwd()

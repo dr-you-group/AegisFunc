@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 calculate_adjust_age_sex_indirectly <- function(input,
                                                 ...) {
   table <- input$table

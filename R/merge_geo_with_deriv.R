@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 merge_geo_with_deriv <- function(input,
                                  ...) {
   geo <- input$geo

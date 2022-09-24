@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 make_leaflet_map <- function(input,
                              ...) {
   data <- input$data

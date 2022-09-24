@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 calculate_disease_map <- function(input,
                                   ...) {
   table <- input$table

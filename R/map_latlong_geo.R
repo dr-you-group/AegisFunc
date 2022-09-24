@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 map_latlong_geo <- function(input,
                             ...) {
   latlong <- input$latlong

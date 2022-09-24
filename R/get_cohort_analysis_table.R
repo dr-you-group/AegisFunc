@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 get_cohort_analysis_table <- function(input,
                                       ...) {
   conn_info <- input$conn_info
@@ -13,7 +22,7 @@ get_cohort_analysis_table <- function(input,
 
   sql_file_name <- "query_cohort"
 
-  table <- query_cdm_database(
+  table <- AegisFunc::query_cdm_database(
     sql_file_name = sql_file_name,
     conn_info = conn_info,
     cdm_database_schema = cdm_database_schema,

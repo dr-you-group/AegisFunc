@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 make_leaflet_color <- function(input,
                                ...) {
   palette <- input$palette

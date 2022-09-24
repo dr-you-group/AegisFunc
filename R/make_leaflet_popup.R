@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 make_leaflet_popup <- function(input,
                                ...) {
   name <- input$data$oname

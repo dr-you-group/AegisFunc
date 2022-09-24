@@ -1,3 +1,18 @@
+#' Title
+#'
+#' @param sql_file_name
+#' @param conn_info
+#' @param sql
+#' @param error_report_file
+#' @param snake_case_to_camel_case
+#' @param integer_as_numeric
+#' @param integer64_as_numeric
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 query_cdm_database <- function(sql_file_name = NULL,
                                conn_info = NULL,
                                sql = NULL,

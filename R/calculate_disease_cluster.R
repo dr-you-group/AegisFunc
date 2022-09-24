@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 calculate_disease_cluster <- function(input,
                                       ...) {
   table <- input$table

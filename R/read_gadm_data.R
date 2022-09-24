@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 read_gadm_data <- function(input,
                            ...) {
   name <- input$geo$name

@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 calculate_count_with_geo_oid <- function(input,
                                          ...) {
   table <- input$table

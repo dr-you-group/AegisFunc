@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param input
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 get_connection_details <- function(input,
                                    ...) {
   dbms <- input$conn$dbms
