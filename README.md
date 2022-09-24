@@ -12,7 +12,17 @@ v5.4.0.
 AegisFunc originated from the Aegis project that is an open-source
 spatial analysis tool based on CDM. <https://github.com/ABMI/Aegis>.
 
--   We use latitude and longitude columns in Location table.
+## Requirements
+
+OHDSI CDM v5.4.0 - We use latitude and longitude fields in Location
+table (updated on v5.4.0).
+
+INLA package - INLA package is not supported by CRAN. - You can install
+manually from the r-inla repository
+
+``` r
+install.packages("INLA", repos = c(getOption("repos"), INLA = "https://inla.r-inla-download.org/R/stable"), dep = TRUE)
+```
 
 ## Installation
 
