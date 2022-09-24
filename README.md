@@ -42,7 +42,7 @@ We recommend using it by loading all functions.
 devtools::load_all()
 ```
 
-## Example
+## Check your CDM database
 
 ### Database connection
 
