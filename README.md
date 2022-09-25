@@ -125,7 +125,7 @@ Read geo data
 input <- base::list()
 input$geo$name <- "KOR" # "GADM" or "KOR"
 input$geo$country <- "KOR"
-input$geo$level <- 2
+input$geo$level <- "2"
 
 geo <- get_geo_data(input)
 ```
@@ -157,8 +157,8 @@ Adjusting for age and sex
 input <- base::list()
 input$table <- table_arr
 input$adj$mode <- "std" # "std" or "crd"
-input$adj$fraction <- 100000
-input$adj$conf_level <- 0.95
+input$adj$fraction <- "100000"
+input$adj$conf_level <- "0.95"
 
 table_adj <- calculate_adjust_age_sex_indirectly(input)
 ```
