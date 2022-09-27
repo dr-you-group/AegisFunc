@@ -9,7 +9,7 @@
 #' @examples
 make_leaflet_bound <- function(input,
                                ...) {
-  bbox <- input@bbox
+  bbox <- input$data@bbox
 
   bound <- base::list()
 

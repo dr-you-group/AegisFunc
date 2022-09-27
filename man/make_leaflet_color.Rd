@@ -7,7 +7,7 @@
 make_leaflet_color(input, ...)
 }
 \arguments{
-\item{...}{}
+\item{input}{}
 }
 \description{
 Title

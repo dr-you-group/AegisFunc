@@ -9,16 +9,9 @@
 #' @examples
 get_leaflet_map <- function(input,
                             ...) {
-  data <- input$data
-  stats <- input$stats
-  color <- base::list()
-  color$palette <- "Greens"
-  color$domain <- NULL
-  color$n <- 9
-
-  color <- AegisFunc::make_leaflet_color(color)
+  color <- AegisFunc::make_leaflet_color(input)
   popup <- AegisFunc::make_leaflet_popup(input)
-  bound <- AegisFunc::make_leaflet_bound(data)
+  bound <- AegisFunc::make_leaflet_bound(input)
 
   input$color <- color
   input$popup <- popup
