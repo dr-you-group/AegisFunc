@@ -12,22 +12,20 @@ calculate_disease_map <- function(input,
   table <- input$table
   graph_file_path <- input$graph_file_path
 
-  formula <- outcome_count ~ 1 +
-    INLA::f(oid, model = "iid") +
-    INLA::f(oid, model = "bym2", graph = graph_file_path, adjust.for.con.comp = TRUE)
-  family <- "poisson"
-  control_predictor <- base::list(compute = TRUE)
+  table$oid2 <- table$oid
 
   results <- INLA::inla(
-    formula = formula,
-    family = family,
+    formula = outcome_count ~ 1 +
+      f(oid, model = "iid") +
+      f(oid2, model = "bym2", graph = graph_file_path, adjust.for.con.comp = TRUE),
+    family = "poisson",
     data = table,
     E = expected,
-    control.predictor = control_predictor
+    control.predictor = base::list(compute = TRUE)
   )
 
   stats <- base::list()
-  stats$rr_mean <- results$map.summary.fitted.values[, 1]
+  stats$rr_mean <- results$summary.fitted.values$mean
 
   arranged_table <- table
   arranged_table$indicator <- stats$rr_mean

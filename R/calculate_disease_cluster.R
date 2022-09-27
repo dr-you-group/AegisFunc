@@ -11,24 +11,15 @@ calculate_disease_cluster <- function(input,
                                       ...) {
   table <- input$table
 
-  geo <- SpatialEpi::latlong2grid(table[, c("longitude", "latitude")])
-  cases <- base::tapply(table$outcome_count, table$oid, sum)
-  population <- base::tapply(table$target_count, table$oid, sum)
-  expected <- table$expected
-  pop_upper_bound <- 0.1
-  n_simulations <- 999
-  alpha_level <- 0.05
-  plot <- FALSE
-
   results <- SpatialEpi::kulldorff(
-    geo = geo,
-    cases = cases,
-    population = population,
-    expected.cases = expected,
-    pop.upper.bound = pop_upper_bound,
-    n.simulations = n_simulations,
-    alpha.level = alpha_level,
-    plot = plot
+    geo = SpatialEpi::latlong2grid(table[, c("longitude", "latitude")]),
+    cases = base::tapply(table$outcome_count, table$oid, sum),
+    population = base::tapply(table$target_count, table$oid, sum),
+    expected.cases = table$expected,
+    pop.upper.bound = 0.1,
+    n.simulations = 999,
+    alpha.level = 0.05,
+    plot = FALSE
   )
 
   stats <- base::as.data.frame(results$most.likely.cluster)
