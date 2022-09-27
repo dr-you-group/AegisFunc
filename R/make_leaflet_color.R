@@ -11,14 +11,14 @@ make_leaflet_color <- function(input,
                                ...) {
   type <- input$type
 
-  palette <- "Greens"   # colorNumeric, colorBin, colorQuantile, colorFactor
+  palette <- "Reds"   # colorNumeric, colorBin, colorQuantile, colorFactor
   domain <- NULL        # colorNumeric, colorBin, colorQuantile, colorFactor
   bins <- 7             # colorBin
   pretty <- TRUE        # colorBin
   n <- 4                # colorQuantile
   levels <- NULL        # colorFactor
   ordered <- FALSE      # colorFactor
-  na.color <- "#808080" # colorNumeric, colorBin, colorQuantile, colorFactor
+  na.color <- "#FFFFFF" # colorNumeric, colorBin, colorQuantile, colorFactor
   alpha <- FALSE        # colorNumeric, colorBin, colorQuantile, colorFactor
   reverse <- FALSE      # colorNumeric, colorBin, colorQuantile, colorFactor
   right <- FALSE        # colorBin, colorQuantile
@@ -26,20 +26,33 @@ make_leaflet_color <- function(input,
   color <- leaflet::colorBin(
     palette = palette,
     domain = domain,
-    bins = bins
+    bins = bins,
+    pretty = pretty,
+    na.color = na.color,
+    alpha = alpha,
+    reverse = reverse,
+    right = right
   )
 
   if (type == "map") {
     color <- leaflet::colorQuantile(
       palette = palette,
       domain = domain,
-      n = 9
+      n = 9,
+      na.color = na.color,
+      alpha = alpha,
+      reverse = reverse,
+      right = right
     )
   } else if (type == "cluster") {
     color <- leaflet::colorQuantile(
       palette = palette,
       domain = domain,
-      n = 1
+      n = 1,
+      na.color = na.color,
+      alpha = alpha,
+      reverse = reverse,
+      right = right
     )
   }
 

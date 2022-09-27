@@ -21,8 +21,8 @@ make_leaflet_map <- function(input,
     map,
     data = data,
     fillColor = ~ color(indicator),
-    fillOpacity = 0.4,
-    weight = 2,
+    fillOpacity = 0.8,
+    weight = 1,
     color = "white",
     popup = popup
   )
