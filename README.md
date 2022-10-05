@@ -213,6 +213,20 @@ Plot with data
 input <- base::list()
 input$data <- data
 input$stats <- deriv$stats
+input$color$type <- "colorQuantile"
+input$color$param <- base::list(
+  palette <- "Reds",
+  domain <- NULL,
+  bins <- 7,
+  pretty <- TRUE,
+  n <- 4,
+  levels <- NULL,
+  ordered <- FALSE,
+  na.color <- "#FFFFFF",
+  alpha <- FALSE,
+  reverse <- FALSE,
+  right <- FALSE,
+)
 
 plot <- get_leaflet_map(input)
 plot

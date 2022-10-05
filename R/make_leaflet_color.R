@@ -9,7 +9,8 @@
 #' @examples
 make_leaflet_color <- function(input,
                                ...) {
-  type <- input$type
+  type <- input$color$type
+  param <- input$color$param
 
   palette <- "Reds"   # colorNumeric, colorBin, colorQuantile, colorFactor
   domain <- NULL        # colorNumeric, colorBin, colorQuantile, colorFactor
@@ -23,36 +24,66 @@ make_leaflet_color <- function(input,
   reverse <- FALSE      # colorNumeric, colorBin, colorQuantile, colorFactor
   right <- FALSE        # colorBin, colorQuantile
 
-  color <- leaflet::colorBin(
+  palette <- param$palette
+  domain <- param$domain
+  bins <- param$bins
+  pretty <- param$pretty
+  n <- param$n
+  levels <- param$levels
+  ordered <- param$ordered
+  na.color <- param$na.color
+  alpha <- param$alpha
+  reverse <- param$reverse
+  right <- param$right
+
+  color <- leaflet::colorQuantile(
     palette = palette,
     domain = domain,
-    bins = bins,
-    pretty = pretty,
+    n = n,
     na.color = na.color,
     alpha = alpha,
     reverse = reverse,
     right = right
   )
 
-  if (type == "map") {
-    color <- leaflet::colorQuantile(
+  if(type == "colorNumeric") {
+    color <- leaflet::colorNumeric(
       palette = palette,
       domain = domain,
-      n = 9,
+      na.color = na.color,
+      alpha = alpha,
+      reverse = reverse
+    )
+  } else if (type == "colorBin") {
+    color <- leaflet::colorBin(
+      palette = palette,
+      domain = domain,
+      bins = bins,
+      pretty = pretty,
       na.color = na.color,
       alpha = alpha,
       reverse = reverse,
       right = right
     )
-  } else if (type == "cluster") {
+  } else if (type == "colorQuantile") {
     color <- leaflet::colorQuantile(
       palette = palette,
       domain = domain,
-      n = 1,
+      n = n,
       na.color = na.color,
       alpha = alpha,
       reverse = reverse,
       right = right
+    )
+  } else if (type == "colorFactor") {
+    color <- leaflet::colorFactor(
+      palette = palette,
+      domain = domain,
+      levels = levels,
+      ordered = ordered,
+      na.color = na.color,
+      alpha = alpha,
+      reverse = reverse
     )
   }
 
