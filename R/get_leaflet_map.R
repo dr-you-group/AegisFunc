@@ -17,10 +17,6 @@ get_leaflet_map <- function(data, stats,
   popup <- AegisFunc::make_leaflet_popup(data, stats)
   bound <- AegisFunc::make_leaflet_bound(data)
 
-  input$color <- color
-  input$popup <- popup
-  input$bound <- bound
-
   map <- AegisFunc::make_leaflet_map(data, color, popup, bound)
 
   map
