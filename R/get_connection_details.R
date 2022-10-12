@@ -1,27 +1,37 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param dbms
+#' @param user
+#' @param password
+#' @param server
+#' @param port
+#' @param extra_settings
+#' @param oracle_driver
+#' @param path_to_driver
+#' @param connection_string
 #'
 #' @return
 #' @export
 #'
 #' @examples
-get_connection_details <- function(input,
+get_connection_details <- function(dbms, user, password, server, port,
+                                   extra_settings, oracle_driver,
+                                   path_to_driver, connection_string,
                                    ...) {
-  dbms <- input$conn$dbms
-  user <- input$conn$user
-  password <- input$conn$password
-  server <- input$conn$server
-  port <- base::as.numeric(input$conn$port)
-  extra_settings <- input$conn$extra_settings
-  oracle_driver <- input$conn$oracle_driver
-  path_to_driver <- input$conn$path_to_driver
-  connection_string <- input$conn$connection_string
+  dbms <- dbms
+  user <- user
+  password <- password
+  server <- server
+  port <- base::as.numeric(port)
+  extra_settings <- extra_settings
+  oracle_driver <- oracle_driver
+  path_to_driver <- path_to_driver
+  connection_string <- connection_string
 
   if (
     base::is.null(path_to_driver) |
-    base::length(base::list.files(path_to_driver, "^mssql-jdbc.*.jar$|^sqljdbc.*\\.jar$")) == 0
+      base::length(base::list.files(path_to_driver, "^mssql-jdbc.*.jar$|^sqljdbc.*\\.jar$")) == 0
   ) {
     DatabaseConnector::downloadJdbcDrivers(
       dbms = dbms,
@@ -46,6 +56,3 @@ get_connection_details <- function(input,
 
   conn_info
 }
-
-# get_connection_details(input)
-# conn_info <- get_connection_details(input)

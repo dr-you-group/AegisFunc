@@ -1,17 +1,18 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param data
+#' @param stats
 #'
 #' @return
 #' @export
 #'
 #' @examples
-make_leaflet_popup <- function(input,
+make_leaflet_popup <- function(data, stats,
                                ...) {
-  name <- input$data$oname
-  indicator <- input$data$indicator
-  stats <- input$stats
+  name <- data$oname
+  indicator <- data$indicator
+  stats <- stats
 
   popup <- base::paste0(
     "<strong>Name: </strong>", name, "<br>",
@@ -24,9 +25,6 @@ make_leaflet_popup <- function(input,
 
   popup
 }
-
-# make_leaflet_popup(input)
-# popup <- make_leaflet_popup(input)
 
 p <- function(x, pre, post, collapse) {
   paste0(pre, names(x), post, x, collapse = collapse)

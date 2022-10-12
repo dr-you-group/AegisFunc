@@ -4,10 +4,10 @@
 \alias{read_gadm_data}
 \title{Title}
 \usage{
-read_gadm_data(input, ...)
+read_gadm_data(name, country, level, ...)
 }
 \arguments{
-\item{...}{}
+\item{level}{}
 }
 \description{
 Title

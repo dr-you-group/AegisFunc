@@ -1,17 +1,19 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param name
+#' @param country
+#' @param level
 #'
 #' @return
 #' @export
 #'
 #' @examples
-read_gadm_data <- function(input,
+read_gadm_data <- function(name, country, level,
                            ...) {
-  name <- input$geo$name
-  country <- input$geo$country
-  level <- base::as.numeric(input$geo$level)
+  name <- name
+  country <- country
+  level <- base::as.numeric(level)
   download <- TRUE
   path <- base::getwd()
   version <- 3.6
@@ -29,6 +31,3 @@ read_gadm_data <- function(input,
 
   geo
 }
-
-# read_gadm_data(input)
-# geo <- read_gadm_data(input)

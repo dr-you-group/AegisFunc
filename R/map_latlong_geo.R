@@ -1,16 +1,17 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param latlong
+#' @param geo
 #'
 #' @return
 #' @export
 #'
 #' @examples
-map_latlong_geo <- function(input,
+map_latlong_geo <- function(latlong, geo,
                             ...) {
-  latlong <- input$latlong
-  geo <- input$geo
+  latlong <- latlong
+  geo <- geo
 
   sp::coordinates(latlong) <- ~ longitude + latitude
   sp::proj4string(latlong) <- sp::proj4string(geo)
@@ -28,6 +29,3 @@ map_latlong_geo <- function(input,
 
   geo_map
 }
-
-# map_latlong_geo(input)
-# geo_map <- map_latlong_geo(input)

@@ -4,10 +4,10 @@
 \alias{make_leaflet_map}
 \title{Title}
 \usage{
-make_leaflet_map(input, ...)
+make_leaflet_map(data, color, popup, bound, ...)
 }
 \arguments{
-\item{...}{}
+\item{bound}{}
 }
 \description{
 Title

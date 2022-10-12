@@ -1,26 +1,28 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param name
+#' @param country
+#' @param level
 #'
 #' @return
 #' @export
 #'
 #' @examples
-get_geo_data <- function(input,
+get_geo_data <- function(name, country, level,
                          ...) {
-  name <- input$geo$name
-  country <- input$geo$country
-  level <- base::as.numeric(input$geo$level)
+  name <- name
+  country <- country
+  level <- base::as.numeric(level)
 
   switch(name,
     "GADM" = {
-      geo <- AegisFunc::read_gadm_data(input)
+      geo <- AegisFunc::read_gadm_data(name, country, level)
       pattern <- "^NAME_([1-9])"
     },
     "KOR" = {
       if (country == "KOR") {
-        geo <- AegisFunc::read_kor_shp(input)
+        geo <- AegisFunc::read_kor_shp(country, level)
         pattern <- "KOR_NM"
       }
     }
@@ -47,6 +49,3 @@ get_geo_data <- function(input,
 
   geo
 }
-
-# get_geo_data(input)
-# geo <- get_geo_data(input)

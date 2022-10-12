@@ -1,16 +1,17 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param country
+#' @param level
 #'
 #' @return
 #' @export
 #'
 #' @examples
-read_kor_shp <- function(input,
+read_kor_shp <- function(country, level,
                          ...) {
-  country <- input$geo$country
-  level <- base::as.numeric(input$geo$level)
+  country <- country
+  level <- base::as.numeric(level)
 
   shp_file_name <- base::paste0(country, "_", level)
 
@@ -25,6 +26,3 @@ read_kor_shp <- function(input,
 
   geo
 }
-
-# read_kor_shp(input)
-# geo <- read_kor_shp(input)

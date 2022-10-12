@@ -4,10 +4,10 @@
 \alias{merge_geo_with_deriv}
 \title{Title}
 \usage{
-merge_geo_with_deriv(input, ...)
+merge_geo_with_deriv(geo, deriv, ...)
 }
 \arguments{
-\item{...}{}
+\item{deriv}{}
 }
 \description{
 Title

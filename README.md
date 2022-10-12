@@ -59,12 +59,15 @@ library(AegisFunc)
 We have tested with SQL Server 2019.
 
 ``` r
-input <- base::list()
-input$conn$dbms <- "sql server"
-input$conn$path_to_driver <- getwd()
-input$conn$connection_string <- "jdbc:sqlserver://[SERVER_IP]:[SERVER_PORT];user=[USER_ID];password=[USER_PW];databaseName=[CDM_DB_NAME]"
+dbms <- "sql server"
+path_to_driver <- getwd()
+connection_string <- "jdbc:sqlserver://[SERVER_IP]:[SERVER_PORT];user=[USER_ID];password=[USER_PW];databaseName=[CDM_DB_NAME]"
 
-conn_info <- get_connection_details(input)
+conn_info <- get_connection_details(
+  dbms = dbms,
+  path_to_driver = path_to_driver,
+  connection_string = connection_string
+)
 ```
 
 ### Check CDM version
@@ -73,11 +76,13 @@ You must confirm your CDM version.
 Because we **only support for CDM v5.4.0 or above**.
 
 ``` r
-input <- base::list()
-input$conn_info <- conn_info
-input$query$cdm_database_schema <- "[CDM_DB_SCHEMA]"
+conn_info <- conn_info
+cdm_database_schema <- "[CDM_DB_SCHEMA]"
 
-cdm_source <- get_cdm_source(input)
+cdm_source <- get_cdm_source(
+  conn_info = conn_info,
+  cdm_database_schema = cdm_database_schema
+)
 cdm_version <- cdm_source[c("cdm_version")]
 ```
 
@@ -86,11 +91,13 @@ cdm_version <- cdm_source[c("cdm_version")]
 Query defined cohort list.
 
 ``` r
-input <- base::list()
-input$conn_info <- conn_info
-input$query$result_database_schema <- "[RESULT_DB_SCHEMA]"
+conn_info <- conn_info
+result_database_schema <- "[RESULT_DB_SCHEMA]"
 
-cohort_list <- get_cohort_list_table(input)
+cohort_list <- get_cohort_list_table(
+  conn_info = conn_info,
+  result_database_schema = result_database_schema
+)
 ```
 
 ## Disease Map/Cluster
@@ -100,19 +107,29 @@ cohort_list <- get_cohort_list_table(input)
 Get cohort table from CDM/Atlas database
 
 ``` r
-input <- base::list()
-input$conn_info <- conn_info
-input$query$cdm_database_schema <- "[CDM_DB_SCHEMA]"
-input$query$result_database_schema <- "[RESULT_DB_SCHEMA]"
-input$query$target_cohort_definition_id <- "1"
-input$query$outcome_cohort_definition_id <- "2"
-input$query$cohort_start_date <- "2020-01-01"
-input$query$cohort_end_date <- "2020-12-31"
-input$query$time_at_risk_start_date <- "0"
-input$query$time_at_risk_end_date <- "0"
-input$query$time_at_risk_end_date_panel <- "cohort_start_date" # "cohort_start_date" or "cohort_end_date"
+conn_info <- conn_info
+cdm_database_schema <- "[CDM_DB_SCHEMA]"
+result_database_schema <- "[RESULT_DB_SCHEMA]"
+target_cohort_definition_id <- "1"
+outcome_cohort_definition_id <- "2"
+cohort_start_date <- "2020-01-01"
+cohort_end_date <- "2020-12-31"
+time_at_risk_start_date <- "0"
+time_at_risk_end_date <- "0"
+time_at_risk_end_date_panel <- "cohort_start_date" # "cohort_start_date" or "cohort_end_date"
 
-cohort_table <- get_cohort_analysis_table(input)
+cohort_table <- get_cohort_analysis_table(
+  conn_info = conn_info,
+  cdm_database_schema = cdm_database_schema,
+  result_database_schema = result_database_schema,
+  target_cohort_definition_id = target_cohort_definition_id,
+  outcome_cohort_definition_id = outcome_cohort_definition_id,
+  cohort_start_date = cohort_start_date,
+  cohort_end_date = cohort_end_date,
+  time_at_risk_start_date = time_at_risk_start_date,
+  time_at_risk_end_date = time_at_risk_end_date,
+  time_at_risk_end_date_panel = time_at_risk_end_date_panel
+)
 ```
 
 Read geo data
@@ -122,31 +139,37 @@ Read geo data
     Korea](http://www.gisdeveloper.co.kr/?p=2332)
 
 ``` r
-input <- base::list()
-input$geo$name <- "KOR" # "GADM" or "KOR"
-input$geo$country <- "KOR"
-input$geo$level <- "2"
+name <- "KOR" # "GADM" or "KOR"
+country <- "KOR"
+level <- "2"
 
-geo <- get_geo_data(input)
+geo <- get_geo_data(
+  name = name,
+  country = country,
+  level = level
+)
 ```
 
 Map cohort table (lat/long) with geo data
 
 ``` r
-input <- base::list()
-input$latlong <- cohort_table
-input$geo <- geo
+latlong <- cohort_table
+geo <- geo
 
-geo_map <- map_latlong_geo(input)
+geo_map <- map_latlong_geo(
+  latlong = latlong,
+  geo = geo
+)
 ```
 
 Arrange table
 
 ``` r
-input <- base::list()
-input$table <- geo_map
+table <- geo_map
 
-table_arr <- calculate_count_with_geo_oid(input)
+table_arr <- calculate_count_with_geo_oid(
+  table = table
+)
 ```
 
 ### Step 02. Adjustment
@@ -154,13 +177,17 @@ table_arr <- calculate_count_with_geo_oid(input)
 Adjusting for age and sex
 
 ``` r
-input <- base::list()
-input$table <- table_arr
-input$adj$mode <- "std" # "std" or "crd"
-input$adj$fraction <- "100000"
-input$adj$conf_level <- "0.95"
+table <- table_arr
+mode <- "std" # "std" or "crd"
+fraction <- "100000"
+conf_level <- "0.95"
 
-table_adj <- calculate_adjust_age_sex_indirectly(input)
+table_adj <- calculate_adjust_age_sex_indirectly(
+  table = table,
+  mode = mode,
+  fraction = fraction,
+  conf_level = conf_level
+)
 ```
 
 ### Step 03-1. Calculate disease map
@@ -168,20 +195,23 @@ table_adj <- calculate_adjust_age_sex_indirectly(input)
 Generate graph file from geo data
 
 ``` r
-input <- base::list()
-input$geo <- geo
+geo <- geo
 
-graph_file_path <- trans_geo_to_graph(input)
+graph_file_path <- trans_geo_to_graph(
+  geo = geo
+)
 ```
 
 Calculate disease map
 
 ``` r
-input <- base::list()
-input$table <- table_adj
-input$graph_file_path <- graph_file_path
+table <- table_adj
+graph_file_path <- graph_file_path
 
-deriv <- calculate_disease_map(input)
+deriv <- calculate_disease_map(
+  table = table,
+  graph_file_path = graph_file_path
+)
 ```
 
 ### Step 03-2. Calculate disease cluster
@@ -189,10 +219,11 @@ deriv <- calculate_disease_map(input)
 Calculate disease cluster
 
 ``` r
-input <- base::list()
-input$table <- table_adj
+table <- table_adj
 
-deriv <- calculate_disease_cluster(input)
+deriv <- calculate_disease_cluster(
+  table = table
+)
 ```
 
 ### Step 04. Plot
@@ -200,21 +231,22 @@ deriv <- calculate_disease_cluster(input)
 Merge geo data with derivatives
 
 ``` r
-input <- base::list()
-input$geo <- geo
-input$deriv <- deriv$arranged_table
+geo <- geo
+deriv <- deriv$arranged_table
 
-data <- merge_geo_with_deriv(input)
+data <- merge_geo_with_deriv(
+  geo = geo,
+  deriv = deriv
+)
 ```
 
 Plot with data
 
 ``` r
-input <- base::list()
-input$data <- data
-input$stats <- deriv$stats
-input$color$type <- "colorQuantile"
-input$color$param <- base::list(
+data <- data
+stats <- deriv$stats
+color_type <- "colorQuantile"
+color_param <- base::list(
   palette <- "Reds",
   domain <- NULL,
   bins <- 7,
@@ -228,6 +260,11 @@ input$color$param <- base::list(
   right <- FALSE,
 )
 
-plot <- get_leaflet_map(input)
+plot <- get_leaflet_map(
+  data = data,
+  stats = stats,
+  color_type = color_type,
+  color_param = color_param
+)
 plot
 ```

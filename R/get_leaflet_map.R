@@ -1,26 +1,27 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param data
+#' @param stats
+#' @param color_type
+#' @param color_param
 #'
 #' @return
 #' @export
 #'
 #' @examples
-get_leaflet_map <- function(input,
+get_leaflet_map <- function(data, stats,
+                            color_type, color_param,
                             ...) {
-  color <- AegisFunc::make_leaflet_color(input)
-  popup <- AegisFunc::make_leaflet_popup(input)
-  bound <- AegisFunc::make_leaflet_bound(input)
+  color <- AegisFunc::make_leaflet_color(color_type, color_param)
+  popup <- AegisFunc::make_leaflet_popup(data, stats)
+  bound <- AegisFunc::make_leaflet_bound(data)
 
   input$color <- color
   input$popup <- popup
   input$bound <- bound
 
-  map <- AegisFunc::make_leaflet_map(input)
+  map <- AegisFunc::make_leaflet_map(data, color, popup, bound)
 
   map
 }
-
-# get_leaflet_map(input)
-# map <- get_leaflet_map(input)

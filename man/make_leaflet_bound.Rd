@@ -4,10 +4,10 @@
 \alias{make_leaflet_bound}
 \title{Title}
 \usage{
-make_leaflet_bound(input, ...)
+make_leaflet_bound(data, ...)
 }
 \arguments{
-\item{...}{}
+\item{data}{}
 }
 \description{
 Title

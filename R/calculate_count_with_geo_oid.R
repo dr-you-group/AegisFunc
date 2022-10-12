@@ -1,15 +1,15 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param table
 #'
 #' @return
 #' @export
 #'
 #' @examples
-calculate_count_with_geo_oid <- function(input,
+calculate_count_with_geo_oid <- function(table,
                                          ...) {
-  table <- input$table
+  table <- table
 
   table$target_count[is.na(table$target_count)] <- 1
   table$outcome_count[is.na(table$outcome_count)] <- 0
@@ -29,6 +29,3 @@ calculate_count_with_geo_oid <- function(input,
 
   table
 }
-
-# calculate_count_with_geo_oid(input)
-# table <- calculate_count_with_geo_oid(input)

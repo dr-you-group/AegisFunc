@@ -1,18 +1,21 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param table
+#' @param mode
+#' @param fraction
+#' @param conf_level
 #'
 #' @return
 #' @export
 #'
 #' @examples
-calculate_adjust_age_sex_indirectly <- function(input,
+calculate_adjust_age_sex_indirectly <- function(table, mode, fraction, conf_level,
                                                 ...) {
-  table <- input$table
-  mode <- input$adj$mode
-  fraction <- base::as.numeric(input$adj$fraction)
-  conf_level <- base::as.numeric(input$adj$conf_level)
+  table <- table
+  mode <- mode
+  fraction <- base::as.numeric(fraction)
+  conf_level <- base::as.numeric(conf_level)
 
   zv <- stats::qnorm(0.5 * (1 + conf_level))
 
@@ -57,6 +60,3 @@ calculate_adjust_age_sex_indirectly <- function(input,
 
   table
 }
-
-# calculate_adjust_age_sex_indirectly(input)
-# table <- calculate_adjust_age_sex_indirectly(input)

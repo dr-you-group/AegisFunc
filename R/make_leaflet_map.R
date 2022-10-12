@@ -1,18 +1,21 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param data
+#' @param color
+#' @param popup
+#' @param bound
 #'
 #' @return
 #' @export
 #'
 #' @examples
-make_leaflet_map <- function(input,
+make_leaflet_map <- function(data, color, popup, bound,
                              ...) {
-  data <- input$data
-  color <- input$color
-  popup <- input$popup
-  bound <- input$bound
+  data <- data
+  color <- color
+  popup <- popup
+  bound <- bound
 
   map <- leaflet::leaflet()
   map <- leaflet::addProviderTiles(map, "CartoDB.Positron")
@@ -29,6 +32,3 @@ make_leaflet_map <- function(input,
 
   map
 }
-
-# make_leaflet_map(input)
-# map <- make_leaflet_map(input)

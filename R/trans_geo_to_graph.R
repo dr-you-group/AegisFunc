@@ -1,16 +1,16 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param geo
 #'
 #' @return
 #' @export
 #'
 #' @examples
-trans_geo_to_graph <- function(input,
+trans_geo_to_graph <- function(geo,
                                ...) {
   path <- base::getwd()
-  geo <- input$geo
+  geo <- geo
   graph_file_path <- base::file.path(path, "geo.graph")
 
   # table(rgeos::gIsValid(geo, byid=TRUE))
@@ -23,6 +23,3 @@ trans_geo_to_graph <- function(input,
 
   graph_file_path
 }
-
-# trans_geo_to_graph(input)
-# graph_file_path <- trans_geo_to_graph(input)

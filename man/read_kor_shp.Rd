@@ -4,10 +4,10 @@
 \alias{read_kor_shp}
 \title{Title}
 \usage{
-read_kor_shp(input, ...)
+read_kor_shp(country, level, ...)
 }
 \arguments{
-\item{...}{}
+\item{level}{}
 }
 \description{
 Title

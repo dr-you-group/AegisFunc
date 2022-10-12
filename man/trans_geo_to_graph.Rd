@@ -4,10 +4,10 @@
 \alias{trans_geo_to_graph}
 \title{Title}
 \usage{
-trans_geo_to_graph(input, ...)
+trans_geo_to_graph(geo, ...)
 }
 \arguments{
-\item{...}{}
+\item{geo}{}
 }
 \description{
 Title

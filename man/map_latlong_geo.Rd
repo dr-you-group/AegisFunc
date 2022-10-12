@@ -4,10 +4,10 @@
 \alias{map_latlong_geo}
 \title{Title}
 \usage{
-map_latlong_geo(input, ...)
+map_latlong_geo(latlong, geo, ...)
 }
 \arguments{
-\item{...}{}
+\item{geo}{}
 }
 \description{
 Title

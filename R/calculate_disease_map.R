@@ -1,16 +1,17 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param table
+#' @param graph_file_path
 #'
 #' @return
 #' @export
 #'
 #' @examples
-calculate_disease_map <- function(input,
+calculate_disease_map <- function(table, graph_file_path,
                                   ...) {
-  table <- input$table
-  graph_file_path <- input$graph_file_path
+  table <- table
+  graph_file_path <- graph_file_path
 
   table$oid2 <- table$oid
 
@@ -38,6 +39,3 @@ calculate_disease_map <- function(input,
 
   output
 }
-
-# calculate_disease_map(input)
-# output <- calculate_disease_map(input)

@@ -4,10 +4,10 @@
 \alias{get_cdm_source}
 \title{Title}
 \usage{
-get_cdm_source(input, ...)
+get_cdm_source(conn_info, cdm_database_schema, ...)
 }
 \arguments{
-\item{...}{}
+\item{cdm_database_schema}{}
 }
 \description{
 Title

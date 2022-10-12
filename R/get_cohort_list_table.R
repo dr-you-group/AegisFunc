@@ -1,16 +1,17 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param conn_info
+#' @param result_database_schema
 #'
 #' @return
 #' @export
 #'
 #' @examples
-get_cohort_list_table <- function(input,
+get_cohort_list_table <- function(conn_info, result_database_schema,
                                   ...) {
-  conn_info <- input$conn_info
-  result_database_schema <- input$query$result_database_schema
+  conn_info <- conn_info
+  result_database_schema <- result_database_schema
 
   sql_file_name <- "query_cohort_definition"
 
@@ -22,6 +23,3 @@ get_cohort_list_table <- function(input,
 
   table
 }
-
-# get_cohort_list_table(input)
-# table <- get_cohort_list_table(input)

@@ -1,28 +1,29 @@
 #' Title
 #'
+#' @param type
+#' @param param
 #' @param ...
-#' @param input
 #'
 #' @return
 #' @export
 #'
 #' @examples
-make_leaflet_color <- function(input,
+make_leaflet_color <- function(type, param,
                                ...) {
-  type <- input$color$type
-  param <- input$color$param
+  type <- type
+  param <- param
 
-  palette <- "Reds"   # colorNumeric, colorBin, colorQuantile, colorFactor
-  domain <- NULL        # colorNumeric, colorBin, colorQuantile, colorFactor
-  bins <- 7             # colorBin
-  pretty <- TRUE        # colorBin
-  n <- 4                # colorQuantile
-  levels <- NULL        # colorFactor
-  ordered <- FALSE      # colorFactor
+  palette <- "Reds" # colorNumeric, colorBin, colorQuantile, colorFactor
+  domain <- NULL # colorNumeric, colorBin, colorQuantile, colorFactor
+  bins <- 7 # colorBin
+  pretty <- TRUE # colorBin
+  n <- 4 # colorQuantile
+  levels <- NULL # colorFactor
+  ordered <- FALSE # colorFactor
   na.color <- "#FFFFFF" # colorNumeric, colorBin, colorQuantile, colorFactor
-  alpha <- FALSE        # colorNumeric, colorBin, colorQuantile, colorFactor
-  reverse <- FALSE      # colorNumeric, colorBin, colorQuantile, colorFactor
-  right <- FALSE        # colorBin, colorQuantile
+  alpha <- FALSE # colorNumeric, colorBin, colorQuantile, colorFactor
+  reverse <- FALSE # colorNumeric, colorBin, colorQuantile, colorFactor
+  right <- FALSE # colorBin, colorQuantile
 
   palette <- param$palette
   domain <- param$domain
@@ -46,7 +47,7 @@ make_leaflet_color <- function(input,
     right = right
   )
 
-  if(type == "colorNumeric") {
+  if (type == "colorNumeric") {
     color <- leaflet::colorNumeric(
       palette = palette,
       domain = domain,
@@ -89,6 +90,3 @@ make_leaflet_color <- function(input,
 
   color
 }
-
-# make_leaflet_color(input)
-# color <- make_leaflet_color(input)

@@ -49,6 +49,3 @@ query_cdm_database <- function(sql_file_name = NULL,
 
   query
 }
-
-# query_cdm_database()
-# query <- query_cdm_database()

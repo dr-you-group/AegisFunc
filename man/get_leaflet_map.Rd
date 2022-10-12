@@ -4,10 +4,10 @@
 \alias{get_leaflet_map}
 \title{Title}
 \usage{
-get_leaflet_map(input, ...)
+get_leaflet_map(data, stats, color_type, color_param, ...)
 }
 \arguments{
-\item{...}{}
+\item{color_param}{}
 }
 \description{
 Title

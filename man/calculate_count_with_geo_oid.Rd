@@ -4,10 +4,10 @@
 \alias{calculate_count_with_geo_oid}
 \title{Title}
 \usage{
-calculate_count_with_geo_oid(input, ...)
+calculate_count_with_geo_oid(table, ...)
 }
 \arguments{
-\item{...}{}
+\item{table}{}
 }
 \description{
 Title

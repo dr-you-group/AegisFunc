@@ -4,10 +4,21 @@
 \alias{get_connection_details}
 \title{Title}
 \usage{
-get_connection_details(input, ...)
+get_connection_details(
+  dbms,
+  user,
+  password,
+  server,
+  port,
+  extra_settings,
+  oracle_driver,
+  path_to_driver,
+  connection_string,
+  ...
+)
 }
 \arguments{
-\item{...}{}
+\item{connection_string}{}
 }
 \description{
 Title

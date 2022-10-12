@@ -4,10 +4,10 @@
 \alias{get_geo_data}
 \title{Title}
 \usage{
-get_geo_data(input, ...)
+get_geo_data(name, country, level, ...)
 }
 \arguments{
-\item{...}{}
+\item{level}{}
 }
 \description{
 Title

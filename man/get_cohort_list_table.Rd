@@ -4,10 +4,10 @@
 \alias{get_cohort_list_table}
 \title{Title}
 \usage{
-get_cohort_list_table(input, ...)
+get_cohort_list_table(conn_info, result_database_schema, ...)
 }
 \arguments{
-\item{...}{}
+\item{result_database_schema}{}
 }
 \description{
 Title

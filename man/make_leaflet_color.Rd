@@ -4,10 +4,10 @@
 \alias{make_leaflet_color}
 \title{Title}
 \usage{
-make_leaflet_color(input, ...)
+make_leaflet_color(type, param, ...)
 }
 \arguments{
-\item{input}{}
+\item{...}{}
 }
 \description{
 Title

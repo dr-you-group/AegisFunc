@@ -4,10 +4,10 @@
 \alias{calculate_adjust_age_sex_indirectly}
 \title{Title}
 \usage{
-calculate_adjust_age_sex_indirectly(input, ...)
+calculate_adjust_age_sex_indirectly(table, mode, fraction, conf_level, ...)
 }
 \arguments{
-\item{...}{}
+\item{conf_level}{}
 }
 \description{
 Title

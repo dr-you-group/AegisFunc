@@ -1,15 +1,15 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param data
 #'
 #' @return
 #' @export
 #'
 #' @examples
-make_leaflet_bound <- function(input,
+make_leaflet_bound <- function(data,
                                ...) {
-  bbox <- input$data@bbox
+  bbox <- data@bbox
 
   bound <- base::list()
 
@@ -20,6 +20,3 @@ make_leaflet_bound <- function(input,
 
   bound
 }
-
-# make_leaflet_bound(input)
-# bound <- make_leaflet_bound(input)

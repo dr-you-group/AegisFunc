@@ -1,15 +1,15 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param table
 #'
 #' @return
 #' @export
 #'
 #' @examples
-calculate_disease_cluster <- function(input,
+calculate_disease_cluster <- function(table,
                                       ...) {
-  table <- input$table
+  table <- table
 
   results <- SpatialEpi::kulldorff(
     geo = SpatialEpi::latlong2grid(table[, c("longitude", "latitude")]),
@@ -45,6 +45,3 @@ calculate_disease_cluster <- function(input,
 
   output
 }
-
-# calculate_disease_cluster(input)
-# output <- calculate_disease_cluster(input)

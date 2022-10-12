@@ -4,10 +4,10 @@
 \alias{make_leaflet_popup}
 \title{Title}
 \usage{
-make_leaflet_popup(input, ...)
+make_leaflet_popup(data, stats, ...)
 }
 \arguments{
-\item{...}{}
+\item{stats}{}
 }
 \description{
 Title

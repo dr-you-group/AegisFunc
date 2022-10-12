@@ -1,16 +1,17 @@
 #' Title
 #'
-#' @param input
 #' @param ...
+#' @param conn_info
+#' @param cdm_database_schema
 #'
 #' @return
 #' @export
 #'
 #' @examples
-get_cdm_source <- function(input,
+get_cdm_source <- function(conn_info, cdm_database_schema,
                            ...) {
-  conn_info <- input$conn_info
-  cdm_database_schema <- input$query$cdm_database_schema
+  conn_info <- conn_info
+  cdm_database_schema <- cdm_database_schema
 
   sql_file_name <- "query_cdm_source"
 
@@ -22,6 +23,3 @@ get_cdm_source <- function(input,
 
   table
 }
-
-# get_cdm_source(input)
-# table <- get_cdm_source(input)

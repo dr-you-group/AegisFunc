@@ -4,10 +4,22 @@
 \alias{get_cohort_analysis_table}
 \title{Title}
 \usage{
-get_cohort_analysis_table(input, ...)
+get_cohort_analysis_table(
+  conn_info,
+  cdm_database_schema,
+  result_database_schema,
+  target_cohort_definition_id,
+  outcome_cohort_definition_id,
+  cohort_start_date,
+  cohort_end_date,
+  time_at_risk_start_date,
+  time_at_risk_end_date,
+  time_at_risk_end_date_panel,
+  ...
+)
 }
 \arguments{
-\item{...}{}
+\item{time_at_risk_end_date_panel}{}
 }
 \description{
 Title

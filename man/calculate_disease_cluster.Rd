@@ -4,10 +4,10 @@
 \alias{calculate_disease_cluster}
 \title{Title}
 \usage{
-calculate_disease_cluster(input, ...)
+calculate_disease_cluster(table, ...)
 }
 \arguments{
-\item{...}{}
+\item{table}{}
 }
 \description{
 Title
