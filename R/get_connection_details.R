@@ -20,12 +20,12 @@ get_connection_details <- function(dbms, user, password, server, port,
                                    path_to_driver, connection_string,
                                    ...) {
   dbms <- dbms
-  user <- user
-  password <- password
-  server <- server
-  port <- base::as.numeric(port)
-  extra_settings <- extra_settings
-  oracle_driver <- oracle_driver
+  # user <- user
+  # password <- password
+  # server <- server
+  # port <- base::as.numeric(port)
+  # extra_settings <- extra_settings
+  # oracle_driver <- oracle_driver
   path_to_driver <- path_to_driver
   connection_string <- connection_string
 
