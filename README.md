@@ -232,11 +232,11 @@ Merge geo data with derivatives
 
 ``` r
 geo <- geo
-deriv <- deriv$arranged_table
+deriv_arr <- deriv$arranged_table
 
 data <- merge_geo_with_deriv(
   geo = geo,
-  deriv = deriv
+  deriv = deriv_arr
 )
 ```
 
