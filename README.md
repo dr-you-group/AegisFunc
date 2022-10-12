@@ -247,17 +247,17 @@ data <- data
 stats <- deriv$stats
 color_type <- "colorQuantile"
 color_param <- base::list(
-  palette <- "Reds",
-  domain <- NULL,
-  bins <- 7,
-  pretty <- TRUE,
-  n <- 4,
-  levels <- NULL,
-  ordered <- FALSE,
-  na.color <- "#FFFFFF",
-  alpha <- FALSE,
-  reverse <- FALSE,
-  right <- FALSE,
+  palette = "Reds",
+  domain = NULL,
+  bins = 7,
+  pretty = TRUE,
+  n = 4,
+  levels = NULL,
+  ordered = FALSE,
+  na.color = "#FFFFFF",
+  alpha = FALSE,
+  reverse = FALSE,
+  right = FALSE
 )
 
 plot <- get_leaflet_map(
