@@ -44,12 +44,12 @@ get_connection_details <- function(dbms, user, password, server, port,
 
   conn_info <- DatabaseConnector::createConnectionDetails(
     dbms = dbms,
-    user = user,
-    password = password,
-    server = server,
-    port = port,
-    extraSettings = extra_settings,
-    oracleDriver = oracle_driver,
+    # user = user,
+    # password = password,
+    # server = server,
+    # port = port,
+    # extraSettings = extra_settings,
+    # oracleDriver = oracle_driver,
     pathToDriver = path_to_driver,
     connectionString = connection_string
   )
