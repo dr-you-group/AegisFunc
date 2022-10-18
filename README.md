@@ -174,7 +174,7 @@ table_arr <- calculate_count_with_geo_oid(
 
 ### Step 02. Adjustment
 
-Adjusting for age and sex
+Adjustment for age and sex
 
 ``` r
 table <- table_arr
