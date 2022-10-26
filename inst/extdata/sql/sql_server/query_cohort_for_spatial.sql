@@ -68,6 +68,10 @@ FROM including_cohort c
 INNER JOIN @cdm_database_schema.person p
 ON
   c.subject_id = p.person_id
+WHERE
+  age_category IS NOT NULL
+AND
+  sex_category IS NOT NULL
 ),
 including_cohort_w_person_w_location AS (
 SELECT DISTINCT
@@ -118,6 +122,10 @@ FROM all_in_target_cohort c
 INNER JOIN @cdm_database_schema.person p
 ON
   c.subject_id = p.person_id
+WHERE
+  age_category IS NOT NULL
+AND
+  sex_category IS NOT NULL
 )
 
 
