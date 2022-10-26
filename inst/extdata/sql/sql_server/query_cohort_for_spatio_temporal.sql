@@ -118,7 +118,7 @@ SELECT DISTINCT
     WHEN p.gender_concept_id = '8532' THEN 1
   END AS sex_category
 FROM all_in_target_cohort c
-LEFT JOIN @cdm_database_schema.person p
+INNER JOIN @cdm_database_schema.person p
 ON
   c.subject_id = p.person_id
 )
@@ -128,7 +128,7 @@ SELECT
   t.location_id,
   t.latitude,
   t.longitude,
-  t.cohort_start_year
+  t.cohort_start_year,
   t.age_category,
   t.sex_category,
   CAST(t.target_count AS INTEGER) AS target_count,
@@ -155,7 +155,7 @@ FROM
     CAST('@cohort_end_date' AS DATE) >= c.cohort_end_date
   GROUP BY l.location_id, l.latitude, l.longitude, c.cohort_start_year, c.age_category, c.sex_category
 ) t
-LEFT JOIN
+INNER JOIN
 (
   SELECT
     location_id,
