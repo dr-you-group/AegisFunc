@@ -5,6 +5,7 @@
 \title{Title}
 \usage{
 get_cohort_analysis_table(
+  model = "spatial",
   conn_info,
   cdm_database_schema,
   result_database_schema,
@@ -19,7 +20,7 @@ get_cohort_analysis_table(
 )
 }
 \arguments{
-\item{time_at_risk_end_date_panel}{}
+\item{model}{}
 }
 \description{
 Title

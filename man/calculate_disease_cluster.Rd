@@ -4,10 +4,10 @@
 \alias{calculate_disease_cluster}
 \title{Title}
 \usage{
-calculate_disease_cluster(table, ...)
+calculate_disease_cluster(model = "spatial", table, ...)
 }
 \arguments{
-\item{table}{}
+\item{model}{}
 }
 \description{
 Title

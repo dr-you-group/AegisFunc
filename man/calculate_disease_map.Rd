@@ -4,10 +4,10 @@
 \alias{calculate_disease_map}
 \title{Title}
 \usage{
-calculate_disease_map(table, graph_file_path, ...)
+calculate_disease_map(model = "spatial", table, graph_file_path, ...)
 }
 \arguments{
-\item{graph_file_path}{}
+\item{model}{}
 }
 \description{
 Title
