@@ -42,7 +42,11 @@ calculate_adjust_age_sex_indirectly <- function(model = "spatial", table, mode, 
   }
   table$expected <- table$target_count * table$rate
 
-  table <- dplyr::group_by(table, oid, latitude, longitude)
+  if(model == "spatial") {
+    table <- dplyr::group_by(table, oid, latitude, longitude)
+  } else if (model == "spatio-temporal") {
+    table <- dplyr::group_by(table, oid, latitude, longitude, cohort_start_year)
+  }
   table <- dplyr::summarise(
     table,
     target_count = base::sum(target_count),
