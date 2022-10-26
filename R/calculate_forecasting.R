@@ -5,16 +5,19 @@
 #' @param observation_end_date
 #' @param prediction_end_date
 #' @param variables_type
+#' @param model
 #'
 #' @return
 #' @export
 #'
 #' @examples
-calculate_forecasting <- function(table,
+calculate_forecasting <- function(model,
+                                  table,
                                   observation_end_date = "2008-01-01",
                                   prediction_end_date = "2009-08-01",
                                   variables_type = "day",
                                   ...) {
+  model <- model
   table <- table
   observation_end_date <- observation_end_date
   prediction_end_date <- prediction_end_date
@@ -82,8 +85,7 @@ calculate_forecasting <- function(table,
       m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + m12 +
       f(week, model = "ar1"),
     "day,month" = ts ~ 1 + f(as.numeric(date), model = "ar1") +
-      m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + m12 +
-      f(week, model = "ar1"),
+      m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + m12,
     "day,month,week" = ts ~ 1 + f(as.numeric(date), model = "ar1") +
       m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + m12 +
       f(week, model = "ar1"),
