@@ -155,7 +155,7 @@ FROM
     CAST('@cohort_end_date' AS DATE) >= c.cohort_end_date
   GROUP BY l.location_id, l.latitude, l.longitude, c.cohort_start_year, c.age_category, c.sex_category
 ) t
-INNER JOIN
+LEFT JOIN
 (
   SELECT
     location_id,
