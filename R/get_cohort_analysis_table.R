@@ -18,11 +18,16 @@
 #'
 #' @examples
 get_cohort_analysis_table <- function(model = "spatial",
-                                      conn_info, cdm_database_schema, result_database_schema,
-                                      target_cohort_definition_id, outcome_cohort_definition_id,
-                                      cohort_start_date, cohort_end_date,
-                                      time_at_risk_start_date, time_at_risk_end_date,
-                                      time_at_risk_end_date_panel,
+                                      conn_info = NULL,
+                                      cdm_database_schema = NULL,
+                                      result_database_schema = NULL,
+                                      target_cohort_definition_id = NULL,
+                                      outcome_cohort_definition_id = NULL,
+                                      cohort_start_date = NULL,
+                                      cohort_end_date = NULL,
+                                      time_at_risk_start_date = NULL,
+                                      time_at_risk_end_date = NULL,
+                                      time_at_risk_end_date_panel = NULL,
                                       ...) {
   model <- model
   conn_info <- conn_info
