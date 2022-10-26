@@ -113,11 +113,6 @@ cdm_database_schema <- "[CDM_DB_SCHEMA]"
 result_database_schema <- "[RESULT_DB_SCHEMA]"
 target_cohort_definition_id <- "1"
 outcome_cohort_definition_id <- "2"
-cohort_start_date <- "2020-01-01"
-cohort_end_date <- "2020-12-31"
-time_at_risk_start_date <- "0"
-time_at_risk_end_date <- "0"
-time_at_risk_end_date_panel <- "cohort_start_date" # "cohort_start_date" or "cohort_end_date"
 
 cohort_table <- get_cohort_analysis_table(
   model = model,
@@ -125,12 +120,7 @@ cohort_table <- get_cohort_analysis_table(
   cdm_database_schema = cdm_database_schema,
   result_database_schema = result_database_schema,
   target_cohort_definition_id = target_cohort_definition_id,
-  outcome_cohort_definition_id = outcome_cohort_definition_id,
-  cohort_start_date = cohort_start_date,
-  cohort_end_date = cohort_end_date,
-  time_at_risk_start_date = time_at_risk_start_date,
-  time_at_risk_end_date = time_at_risk_end_date,
-  time_at_risk_end_date_panel = time_at_risk_end_date_panel
+  outcome_cohort_definition_id = outcome_cohort_definition_id
 )
 ```
 
