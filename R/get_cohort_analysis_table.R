@@ -46,7 +46,7 @@ get_cohort_analysis_table <- function(model = "spatial",
     "spatio-temporal" = "query_cohort_for_spatial_temporal",
     "temporal" = "query_cohort_for_temporal"
   )
-  sql_file_name <- sql_file_names[model]
+  sql_file_name <- sql_file_names[model][[1]]
 
   table <- AegisFunc::query_cdm_database(
     sql_file_name = sql_file_name,
