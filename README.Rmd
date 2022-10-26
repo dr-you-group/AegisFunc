@@ -302,7 +302,7 @@ Calculate disease cluster
 model <- "spatial"
 table <- table_adj
 
-deriv_c <- calculate_disease_cluster(
+deriv <- calculate_disease_cluster(
   model = model,
   table = table
 )
@@ -350,5 +350,213 @@ plot <- get_leaflet_map(
   color_param = color_param
 )
 plot
+```
+
+
+## Disease Map/Cluster (spatio-temporal model)
+
+### Step 01. Prepare Data
+
+Get cohort table from CDM/Atlas database  
+
+```r
+model <- "spatio-temporal"
+conn_info <- conn_info
+cdm_database_schema <- "[CDM_DB_SCHEMA]"
+result_database_schema <- "[RESULT_DB_SCHEMA]"
+target_cohort_definition_id <- "1"
+outcome_cohort_definition_id <- "2"
+cohort_start_date <- "2020-01-01"
+cohort_end_date <- "2020-12-31"
+time_at_risk_start_date <- "0"
+time_at_risk_end_date <- "0"
+time_at_risk_end_date_panel <- "cohort_start_date" # "cohort_start_date" or "cohort_end_date"
+
+cohort_table <- get_cohort_analysis_table(
+  model = model,
+  conn_info = conn_info,
+  cdm_database_schema = cdm_database_schema,
+  result_database_schema = result_database_schema,
+  target_cohort_definition_id = target_cohort_definition_id,
+  outcome_cohort_definition_id = outcome_cohort_definition_id,
+  cohort_start_date = cohort_start_date,
+  cohort_end_date = cohort_end_date,
+  time_at_risk_start_date = time_at_risk_start_date,
+  time_at_risk_end_date = time_at_risk_end_date,
+  time_at_risk_end_date_panel = time_at_risk_end_date_panel
+)
+```
+
+Read geo data  
+
+- [GADM 3.6](https://gadm.org/)  
+- [Administrative area data of South Korea](http://www.gisdeveloper.co.kr/?p=2332)  
+
+```r
+name <- "KOR" # "GADM" or "KOR"
+country <- "KOR"
+level <- "2"
+
+geo <- get_geo_data(
+  name = name,
+  country = country,
+  level = level
+)
+```
+
+Map cohort table (lat/long) with geo data  
+
+```r
+latlong <- cohort_table
+geo <- geo
+
+geo_map <- map_latlong_geo(
+  latlong = latlong,
+  geo = geo
+)
+```
+
+Arrange table  
+
+```r
+model <- "spatio-temporal"
+table <- geo_map
+
+table_arr <- calculate_count_with_geo_oid(
+  model = model,
+  table = table
+)
+```
+
+
+### Step 02. Adjustment
+
+Adjustment for age and sex  
+
+```r
+model <- "spatio-temporal"
+table <- table_arr
+mode <- "std" # "std" or "crd"
+fraction <- "100000"
+conf_level <- "0.95"
+
+table_adj <- calculate_adjust_age_sex_indirectly(
+  model = model,
+  table = table,
+  mode = mode,
+  fraction = fraction,
+  conf_level = conf_level
+)
+```
+
+
+### Step 03-1. Calculate disease map
+
+Generate graph file from geo data  
+
+```r
+geo <- geo
+
+graph_file_path <- trans_geo_to_graph(
+  geo = geo
+)
+```
+
+Calculate disease map  
+
+```r
+model <- "spatio-temporal"
+table <- table_adj
+graph_file_path <- graph_file_path
+
+deriv <- calculate_disease_map(
+  model = model,
+  table = table,
+  graph_file_path = graph_file_path
+)
+```
+
+
+### Step 03-2. Calculate disease cluster
+
+Calculate disease cluster  
+
+```r
+model <- "spatio-temporal"
+table <- table_adj
+
+deriv <- calculate_disease_cluster(
+  model = model,
+  table = table
+)
+```
+
+
+### Step 04. Plot
+
+Check names of derivatives  
+
+```r
+years <- sort(names(deriv))
+```
+
+Merge geo data with derivatives  
+
+```r
+data <- base::list()
+
+for(i in 1:length(years)) {
+  geo <- geo
+  deriv_arr <- deriv[years[i]][[1]]$arranged_table
+
+  data[years[i]] <- merge_geo_with_deriv(
+    geo = geo,
+    deriv = deriv_arr
+  )
+}
+```
+
+Make plots  
+
+```r
+plot <- base::list()
+
+for(i in 1:length(years)) {
+  data <- data[years[i]][[1]]
+  stats <- deriv[years[i]][[1]]$stats
+  color_type <- "colorQuantile"
+  color_param <- base::list(
+    palette = "Reds",
+    domain = NULL,
+    bins = 7,
+    pretty = TRUE,
+    n = 9,
+    levels = NULL,
+    ordered = FALSE,
+    na.color = "#FFFFFF",
+    alpha = FALSE,
+    reverse = FALSE,
+    right = FALSE
+  )
+
+  plot[years[i]] <- get_leaflet_map(
+    data = data,
+    stats = stats,
+    color_type = color_type,
+    color_param = color_param
+  )
+}
+```
+
+Check names of derivatives  
+
+```r
+idx <- sort(names(plot))
+```
+
+Plot with index  
+
+```r
+plot[idx[1]][[1]]
 ```
 
