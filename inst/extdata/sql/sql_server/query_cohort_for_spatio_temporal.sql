@@ -139,7 +139,7 @@ FROM
     l.location_id,
     l.latitude,
     l.longitude,
-	c.cohort_start_year,
+    c.cohort_start_year,
     c.age_category,
     c.sex_category,
     COUNT(c.subject_id) AS target_count
@@ -161,7 +161,7 @@ INNER JOIN
     location_id,
     latitude,
     longitude,
-	cohort_start_year,
+    cohort_start_year,
     age_category,
     sex_category,
     COUNT(subject_id) AS outcome_count
