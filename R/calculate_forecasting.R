@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-calculate_forecasting <- function(model,
+calculate_forecasting <- function(model = "temporal",
                                   table,
                                   observation_end_date = "2008-01-01",
                                   prediction_end_date = "2009-08-01",

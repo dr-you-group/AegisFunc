@@ -100,7 +100,7 @@ cohort_list <- get_cohort_list_table(
 )
 ```
 
-## Forecasting
+## Forecasting (temporal model)
 
 ### Step 01. Prepare Data
 
@@ -129,12 +129,14 @@ cohort_table <- get_cohort_analysis_table(
 Calculate forecasting
 
 ``` r
+model <- "temporal"
 table <- cohort_table
 observation_end_date <- "2008-01-01"
 prediction_end_date <- "2009-08-01"
 variables_type = "day,season,month,week"
 
 deriv <- calculate_forecasting(
+  model = model,
   table = table,
   observation_end_date = observation_end_date,
   prediction_end_date = prediction_end_date,
@@ -222,9 +224,11 @@ geo_map <- map_latlong_geo(
 Arrange table
 
 ``` r
+model <- "spatial"
 table <- geo_map
 
 table_arr <- calculate_count_with_geo_oid(
+  model = model,
   table = table
 )
 ```
@@ -234,12 +238,14 @@ table_arr <- calculate_count_with_geo_oid(
 Adjustment for age and sex
 
 ``` r
+model <- "spatial"
 table <- table_arr
 mode <- "std" # "std" or "crd"
 fraction <- "100000"
 conf_level <- "0.95"
 
 table_adj <- calculate_adjust_age_sex_indirectly(
+  model = model,
   table = table,
   mode = mode,
   fraction = fraction,

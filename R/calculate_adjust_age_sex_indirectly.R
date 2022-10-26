@@ -5,13 +5,15 @@
 #' @param mode
 #' @param fraction
 #' @param conf_level
+#' @param model
 #'
 #' @return
 #' @export
 #'
 #' @examples
-calculate_adjust_age_sex_indirectly <- function(table, mode, fraction, conf_level,
+calculate_adjust_age_sex_indirectly <- function(model = "spatial", table, mode, fraction, conf_level,
                                                 ...) {
+  model <- model
   table <- table
   mode <- mode
   fraction <- base::as.numeric(fraction)
@@ -21,7 +23,11 @@ calculate_adjust_age_sex_indirectly <- function(table, mode, fraction, conf_leve
 
   # Calculation to indirect age and gender standardization rate
   table_std <- base::data.frame(table)
-  table_std <- dplyr::group_by(table_std, age_category, sex_category)
+  if(model == "spatial") {
+    table_std <- dplyr::group_by(table_std, age_category, sex_category)
+  } else if (model == "spatio-temporal") {
+    table_std <- dplyr::group_by(table_std, cohort_start_year, age_category, sex_category)
+  }
   table_std <- dplyr::summarise(
     table_std,
     target_sum = base::sum(target_count),
@@ -29,7 +35,11 @@ calculate_adjust_age_sex_indirectly <- function(table, mode, fraction, conf_leve
   )
   table_std$rate <- table_std$outcome_sum / table_std$target_sum
 
-  table <- dplyr::left_join(table, table_std, by = base::c("age_category", "sex_category"))
+  if(model == "spatial") {
+    table <- dplyr::left_join(table, table_std, by = base::c("age_category", "sex_category"))
+  } else if (model == "spatio-temporal") {
+    table <- dplyr::left_join(table, table_std, by = base::c("cohort_start_year", "age_category", "sex_category"))
+  }
   table$expected <- table$target_count * table$rate
 
   table <- dplyr::group_by(table, oid, latitude, longitude)
