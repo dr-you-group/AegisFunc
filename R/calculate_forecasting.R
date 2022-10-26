@@ -4,6 +4,7 @@
 #' @param ...
 #' @param observation_end_date
 #' @param prediction_end_date
+#' @param variables_type
 #'
 #' @return
 #' @export
@@ -12,6 +13,7 @@
 calculate_forecasting <- function(table,
                                   observation_end_date = "2008-01-01",
                                   prediction_end_date = "2009-08-01",
+                                  variables_type = "day",
                                   ...) {
   table <- table
   observation_end_date <- observation_end_date
@@ -65,15 +67,32 @@ calculate_forecasting <- function(table,
   ts.df$week <- data.table::week(ts.df$date)
 
   # formula 화 입력 변수 선택적으로 하기 위해
-  formula <- ""
+  formula_opts <- base::list(
+    "day" = ts ~ 1 + f(as.numeric(date), model = "ar1"),
+    "day,season" = ts ~ 1 + f(as.numeric(date), model = "ar1") +
+      f(season, model = "rw2") + f(season2, model = "ar1"),
+    "day,season,month" = ts ~ 1 + f(as.numeric(date), model = "ar1") +
+      f(season, model = "rw2") + f(season2, model = "ar1") +
+      m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + m12,
+    "day,season,week" = ts ~ 1 + f(as.numeric(date), model = "ar1") +
+      f(season, model = "rw2") + f(season2, model = "ar1") +
+      f(week, model = "ar1"),
+    "day,season,month,week" = ts ~ 1 + f(as.numeric(date), model = "ar1") +
+      f(season, model = "rw2") + f(season2, model = "ar1") +
+      m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + m12 +
+      f(week, model = "ar1"),
+    "day,month" = ts ~ 1 + f(as.numeric(date), model = "ar1") +
+      m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + m12 +
+      f(week, model = "ar1"),
+    "day,month,week" = ts ~ 1 + f(as.numeric(date), model = "ar1") +
+      m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + m12 +
+      f(week, model = "ar1"),
+    "day,week" = ts ~ 1 + f(as.numeric(date), model = "ar1") +
+      f(week, model = "ar1")
+  )
 
   # INLA
-  i1 <- INLA::inla(ts ~ 1 +
-               f(season, model = "rw2") +
-               f(season2, model = "ar1") +
-               f(as.numeric(date), model = "ar1") +
-               m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + m12 +
-               f(week, model = "ar1"),
+  i1 <- INLA::inla(formula_opts[variables_type][[1]],
     control.predictor = base::list(compute = TRUE, link = 1),
     verbose = TRUE,
     family = "poisson",

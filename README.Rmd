@@ -143,11 +143,13 @@ Calculate forecasting
 table <- cohort_table
 observation_end_date <- "2008-01-01"
 prediction_end_date <- "2009-08-01"
+variables_type = "day,season,month,week"
 
 deriv <- calculate_forecasting(
   table = table,
   observation_end_date = observation_end_date,
-  prediction_end_date = prediction_end_date
+  prediction_end_date = prediction_end_date,
+  variables_type = variables_type
 )
 ```
 
