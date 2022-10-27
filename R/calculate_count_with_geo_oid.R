@@ -20,7 +20,7 @@ calculate_count_with_geo_oid <- function(model = "spatial", table,
   table$age_category[is.na(table$age_category)] <- 0
   table$sex_category[is.na(table$sex_category)] <- 0
   if(model == "spatio-temporal") {
-    table$cohort_start_year[is.na(table$cohort_start_year)] <- 0
+    table <- table[!is.na(table$cohort_start_year),]
   }
 
   formula_opts <- base::list(
