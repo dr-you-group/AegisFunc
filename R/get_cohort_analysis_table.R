@@ -43,7 +43,7 @@ get_cohort_analysis_table <- function(model = "spatial",
 
   sql_file_names <- base::list(
     "spatial" = "query_cohort_for_spatial",
-    "spatio-temporal" = "query_cohort_for_spatial_temporal",
+    "spatio-temporal" = "query_cohort_for_spatio_temporal",
     "temporal" = "query_cohort_for_temporal"
   )
   sql_file_name <- sql_file_names[model][[1]]
