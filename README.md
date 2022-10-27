@@ -477,7 +477,7 @@ deriv <- calculate_disease_cluster(
 Check names of derivatives
 
 ``` r
-years <- sort(names(deriv))
+years <- names(deriv)
 ```
 
 Merge geo data with derivatives
@@ -536,7 +536,7 @@ names(plot) <- years
 Check names of derivatives
 
 ``` r
-idx <- sort(names(plot))
+idx <- names(plot)
 ```
 
 Plot with index
