@@ -509,11 +509,13 @@ for(i in 1:length(years)) {
   geo <- geo
   deriv_arr <- deriv[years[i]][[1]]$arranged_table
 
-  data[years[i]] <- merge_geo_with_deriv(
+  data <- append(data, list(merge_geo_with_deriv(
     geo = geo,
     deriv = deriv_arr
-  )
+  )))
 }
+
+names(data) <- years
 ```
 
 Make plots  
@@ -539,13 +541,16 @@ for(i in 1:length(years)) {
     right = FALSE
   )
 
-  plot[years[i]] <- get_leaflet_map(
+
+  plot <- append(plot, list(get_leaflet_map(
     data = data,
     stats = stats,
     color_type = color_type,
     color_param = color_param
-  )
+  )))
 }
+
+names(plot) <- years
 ```
 
 Check names of derivatives  

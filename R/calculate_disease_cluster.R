@@ -15,16 +15,22 @@ calculate_disease_cluster <- function(model = "spatial", table,
 
   result <- base::list()
 
+  table <- table[table$outcome_count > 0,]
+
   if(model == "spatial") {
     result <- run_kulldorff(table)
   } else if (model == "spatio-temporal") {
     years <- sort(unique(table$cohort_start_year))
 
     for(i in 1:length(years)) {
+      message("year ", years[i])
+
       idx <- table$cohort_start_year == years[i]
 
-      result[years[i]] <- run_kulldorff(table[idx,])
+      result <- append(result, list(run_kulldorff(table[idx,])))
     }
+
+    names(result) <- years
   }
 
   output <- result

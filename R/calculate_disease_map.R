@@ -17,16 +17,22 @@ calculate_disease_map <- function(model = "spatial", table, graph_file_path,
 
   result <- base::list()
 
+  table <- table[table$outcome_count > 0,]
+
   if(model == "spatial") {
     result <- run_inla(table, graph_file_path)
   } else if (model == "spatio-temporal") {
     years <- sort(unique(table$cohort_start_year))
 
     for(i in 1:length(years)) {
+      message("year ", years[i])
+
       idx <- table$cohort_start_year == years[i]
 
-      result[years[i]] <- run_inla(table[idx,], graph_file_path)
+      result <- append(result, list(run_inla(table[idx,], graph_file_path)))
     }
+
+    names(result) <- years
   }
 
   output <- result
