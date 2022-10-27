@@ -60,7 +60,6 @@ run_inla <- function(table, graph_file_path) {
   arranged_table$indicator <- stats$rr_mean
 
   output <- base::list()
-  output$model <- model
   output$table <- table
   output$results <- results
   output$stats <- stats

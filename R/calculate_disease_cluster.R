@@ -65,7 +65,6 @@ run_kulldorff <- function(table) {
   arranged_table[!is.na(stats$log_likelihood_ratio), ]$indicator <- base::seq(1, base::sum(!is.na(stats$log_likelihood_ratio)), 1)
 
   output <- base::list()
-  output$model <- model
   output$table <- table
   output$results <- results
   output$stats <- stats
